@@ -10,6 +10,13 @@ module.exports.NumberKeys = {
 module.exports.StringKeys = {
   StaticDirectoryName: String("public"), // export Static Directory Name
   AllowedOrigins: String(process.env.ALLOWED_ORIGINS) || "*", // export Allowed Origins
+  JWT_SECRETS : String(process.env.JWT_SECRET) || "AJFLD6262SGHYE561561VREVNNBTBRTNB6515"
+};
+
+// Export all Database Keys as DatabaseKeys
+module.exports.DatabaseKeys = {
+  MongoDbUrl: String(process.env.MONGO_DB_URL) || "mongodb://localhost:27017", // export MongoDbUrl
+  ClientAccountCollectionName: String("SaveFileInfo"), // export ClientAccountCollectionName
 };
 
 

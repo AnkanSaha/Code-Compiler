@@ -9,6 +9,12 @@ const CORS = require('cors'); // import cors
 // Import All Keys
 const {NumberKeys, StringKeys} = require('./config/keys/keys'); // import keys
 
+// Import All Connections
+const MongoDB = require('./config/Database/MongoDB/MongoDB'); // import MongoDB
+
+// Import All Middleware
+const {CheckHeader} = require('./Middleware/Incoming Request Checker'); // import Incoming Request Checker
+
 // CPU Length
 let cpuLength = cpus().length; // get cpu length
 
@@ -42,7 +48,7 @@ else {
     // Enable All Proxy Settings
 	Server.set('trust proxy', ()=> true); // Enable All Proxy Settings
     // Link All Router as MainRouter
-	Server.use('/api', json(), urlencoded({extended:true, limit:5000000 * 1000})); // Link Main Router
+	Server.use('/api', json(), urlencoded({extended:true, limit:5000000 * 1000}), CheckHeader); // Link Main Router
 	magenta('Linked All API Endpoints with PaisaPay Server'); // Print Success Message
 
     // Configure Static Folder
@@ -54,8 +60,8 @@ else {
     // Server Listen
 	try {
 		Server.listen(NumberKeys.PORT, async () => {
-			// const DB_Connection_Status = await MongoDB.ClientAccount.Connect(); // Connect to MongoDB
-			// DB_Connection_Status.status === true ? yellow(` 🚀 Finally, Database Connected & Server is listening on Port ${NumberKeys.PORT} 🚀`) : red(` 🚀 Database Connection Failed & Server is listening on Port ${NumberKeys.PORT} 🚀`); // Print Server Status with Database Connection Status
+			const DB_Connection_Status = await MongoDB.StoreFileInfo.Connect(); // Connect to MongoDB
+			DB_Connection_Status.status === true ? yellow(` 🚀 Finally, Database Connected & Server is listening on Port ${NumberKeys.PORT} 🚀`) : red(` 🚀 Database Connection Failed & Server is listening on Port ${NumberKeys.PORT} 🚀`); // Print Server Status with Database Connection Status
 		});
 	} catch (err) {
 		red(err);
