@@ -15,6 +15,9 @@ const MongoDB = require('./config/Database/MongoDB/MongoDB'); // import MongoDB
 // Import All Middleware
 const {CheckHeader} = require('./Middleware/Incoming Request Checker'); // import Incoming Request Checker
 
+// Import main router
+const MainRouter = require('./Router/Router Manager'); // import Main Router
+
 // CPU Length
 let cpuLength = cpus().length; // get cpu length
 
@@ -48,7 +51,7 @@ else {
     // Enable All Proxy Settings
 	Server.set('trust proxy', ()=> true); // Enable All Proxy Settings
     // Link All Router as MainRouter
-	Server.use('/api', json(), urlencoded({extended:true, limit:5000000 * 1000}), CheckHeader); // Link Main Router
+	Server.use('/api', json(), urlencoded({extended:true, limit:5000000 * 1000}), CheckHeader, MainRouter); // Link Main Router
 	magenta('Linked All API Endpoints with PaisaPay Server'); // Print Success Message
 
     // Configure Static Folder
