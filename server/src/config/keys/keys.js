@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 require("dotenv").config(); // import dotenv
 
+console.log(process.env)
+
 // export All Number Keys as NumberKeys
 module.exports.NumberKeys = {
   PORT: Number(process.env.PORT) || 4569, // export PORT
