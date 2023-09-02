@@ -24,10 +24,10 @@ let cpuLength = cpus().length; // get cpu length
 if(cluster.isMaster){
     // Print Server Info
     bright(`${cpuLength} CPU(s) detected With ${platform()} server : ${(freemem() / 1024 / 1024 / 1024).toFixed(2)} GB Free Ram : ${cpus()[0].model}`);
+   
     // Fork Cluster
-    while (cpuLength--){
-        cluster.fork();
-    }
+    while (cpuLength--) cluster.fork(); // Fork Cluster with CPU Length
+
     // Listen for Cluster Online
     cluster.on('online', (worker) => {
         green(`🚀 Worker ${worker.process.pid} started 🚀`);
