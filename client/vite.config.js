@@ -10,29 +10,64 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "PaisaPay",
-        short_name: "PaisaPay",
+        name: "Code-Editor",
+        short_name: "Code-Editor",
         theme_color: "#ffffff",
         icons: [
           {
-            src: "/assets/icons/Rupee.jpeg",
+            src: "/icons/PWA Icons/icon-192x192.png",
             sizes: "192x192",
-            type: "image/jpeg",
+            type: "image/png",
             purpose: "any maskable",
           },
           {
-            src: "/assets/icons/Rupee.jpeg",
+            src: "/icons/PWA Icons/icon-512x512.png",
             sizes: "512x512",
-            type: "image/jpeg",
+            type: "image/png",
             purpose: "any maskable",
           },
           {
-            src: "/assets/icons/Rupee.jpeg",
-            sizes: "192x192",
-            type: "image/jpeg",
+            src: "/icons/PWA Icons/icon-152x152.png",
+            sizes: "256x256",
+            type: "image/png",
             purpose: "any maskable",
             destination: "/assets/icons",
           },
+          {
+            src: "/icons/PWA Icons/icon-384x384.png",
+            sizes: "384x384",
+            type: "image/png",
+            purpose: "any maskable",
+            destination: "/assets/icons",
+          },
+          {
+            src: "/icons/PWA Icons/icon-144x144.png",
+            sizes: "144x144",
+            type: "image/png",
+            purpose: "any maskable",
+            destination: "/assets/icons",
+          },
+          {
+            src: "/icons/PWA Icons/icon-128x128.png",
+            sizes: "128x128",
+            type: "image/png",
+            purpose: "any maskable",
+            destination: "/assets/icons",
+          },
+          {
+            src: "/icons/PWA Icons/icon-96x96.png",
+            sizes: "96x96",
+            type: "image/png",
+            purpose: "any maskable",
+            destination: "/assets/icons",
+          },
+          {
+            src: "/icons/PWA Icons/icon-72x72.png",
+            sizes: "72x72",
+            type: "image/png",
+            purpose: "any maskable",
+            destination: "/assets/icons",
+          }
         ],
       },
     }),
@@ -79,19 +114,26 @@ export default defineConfig({
     write: true,
     assetsInlineLimit: 5128
   },
-  // server: {
-  //   port: 5173,
-  //   strictPort: true,
-  //   open: true,
-  //   cors: true,
-  //   hmr: true,
-  //   https: false,
-  //   host: "localhost",
-  //   force: false
-  // },
+  server: {
+    port: 5173,
+    strictPort: true,
+    open: true,
+    cors: true,
+    hmr: true,
+    https: false,
+    host: "localhost",
+    force: false
+  },
   resolve: {
     alias: {
-      "@": "/src",
+      "@src": "/src",
+      "@public": "/public",
+      "@app": "/src/App",
+      "@component": "/src/Component",
+      "@page": "/src/Pages",
+      "@helper": "/src/Helper",
+      "@setting": "/src/Settings",
+      "@validator": "/src/Validator",
     },
   },
   optimizeDeps: {
