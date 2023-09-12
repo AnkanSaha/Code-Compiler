@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
 
@@ -9,16 +8,14 @@ import Navbar from "@component/General/Navbar"; // Navbar
 // Import Function
 import {Update_Document_Title} from '@helper/Common'; // Common Functions
 
-export default function CodePage({Language}) {
-  Update_Document_Title(`${Language} Code`); // Update Document Titles
+const Home = () => {
+  Update_Document_Title('Home'); // Update Document Titles
   return (
     <>
       <Navbar />
-      <Sidebar/>
+      <Sidebar />
     </>
   );
-}
+};
 
-CodePage.defaultProps = {
-  Language: "Programming",
-}
+export default Home; // Don't forget to export the component!

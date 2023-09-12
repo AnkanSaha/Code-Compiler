@@ -12,7 +12,7 @@ const StatusSlice = createSlice({
         },
         DeleteInternetStatus: (state) => {
             state.InternetStatus = null;
-        },
+        }
     },
 });
 

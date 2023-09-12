@@ -5,18 +5,15 @@ import {isDevelopment} from '@app/App_Config';
 
 // Import Redux Slice
 import StatusSlice from '@app/Redux/Components/Status';
+import SideBarToggleStatusSlice from '@app/Redux/Components/SideBar';
 
 // 4. Create a Main Store
 const Store = configureStore({
     reducer: combineReducers({
         status: StatusSlice.reducer,
+        SideBarToggle: SideBarToggleStatusSlice.reducer,
     }),
     devTools: isDevelopment,
-    preloadedState: {
-        status: {
-            InternetStatus: true,
-        },
-    },
 })
 
 
