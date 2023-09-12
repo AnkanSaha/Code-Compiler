@@ -21,7 +21,7 @@ Manager.use(ExpressRateLimit({
 
 
 // Link All Sub Routers
-Manager.use('/get', ()=>{}); // Link Get Router
+// Manager.use('/get', ()=>{}); // Link Get Router
 Manager.use('/post', ()=>{}); // Link Post Router
 Manager.use('/put', ()=>{}); // Link Put Router
 Manager.use('/delete', ()=>{}); // Link Delete Router
