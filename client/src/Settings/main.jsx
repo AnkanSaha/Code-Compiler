@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 // import Global Code Editor
-import Global from './Global'; // imported Global from './Global';
+import Global from '@setting/Global'; // imported Global from './Global';
 
 // Redux Provider
 import { Provider } from 'react-redux'; // imported { Provider } from 'react-redux';
