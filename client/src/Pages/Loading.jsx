@@ -12,8 +12,9 @@ export default function Loading() {
     const LoadingMessage = useSelector((state) => state.status.LoadingMessage); // Get Loading Status from Redux
   return (
     <div>
-      <CircularProgress isIndeterminate color='red.700' className='ml-[40.25rem] mt-[14.25rem]' />
-      <Text fontSize='4xl' className='text-center'>{LoadingMessage}</Text>
+      <CircularProgress isIndeterminate color='red.700' className='ml-[41.25rem] mt-[14.25rem]' />
+      <br />
+      <Text fontSize='4xl' className='text-center mt-10'>{LoadingMessage}</Text>
     </div>
   )
 }
