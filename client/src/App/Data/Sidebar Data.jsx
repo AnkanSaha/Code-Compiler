@@ -6,9 +6,9 @@ export const SideBarLangNameData = [
         colorScheme: "messenger",
     },
     {
-        ProgrammingLanguage: "Python",
-        LanguageDescription: "Python is a high-level, versatile, and easy-to-read programming language known for its simplicity and vast libraries, making it ideal for various applications.",
-        Link: "/code/Python",
+        ProgrammingLanguage: "Typescript",
+        LanguageDescription: "TypeScript is a superset of JavaScript that compiles to plain JavaScript. It offers classes, modules, and interfaces to help you build robust components.",
+        Link: "/code/TypeScript",
         colorScheme: "red",        
     },
     {

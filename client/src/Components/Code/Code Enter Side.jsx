@@ -2,7 +2,7 @@
 import React from "react"; // Import react module
 
 // Redux
-import { useDispatch } from "react-redux"; // Import useDispatch hook
+import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
 import { setLanguage, setCode, setSessionID } from "@redux/Components/Code"; // Import setCode action
 
 // Import Router
@@ -15,9 +15,8 @@ export default function CodeEnterSide() {
   // Hooks
   const { language } = useParams(); // Get language from URL
   const dispatch = useDispatch(); // Get dispatch from useDispatch hook
+  const {Code} = useSelector((state) => state.Code); // Get state from useSelector hook
 
-  // State
-  const [codeSnippet, setCodeSnippet] = React.useState(""); // Set code state
 
   React.useEffect(() => {
     const matchedElement = CodeSnippet.find(
@@ -25,30 +24,31 @@ export default function CodeEnterSide() {
     );
 
     if (matchedElement) {
-      setCodeSnippet(matchedElement.Code); // Set code snippet
       dispatch(setCode(matchedElement.Code)); // Set code snippet to redux
       dispatch(setLanguage(matchedElement.Language)); // Set language to redux
       dispatch(setSessionID(crypto.randomUUID())); // Set session ID to redux
     } else {
-      setCodeSnippet("");
+      dispatch(setCode("")); // Set code snippet to redux to empty
+      dispatch(setLanguage("")); // Set language to redux to empty
+      dispatch(setSessionID("")); // Set session ID to redux to empty
     }
   }, [dispatch, language]);
 
   // Onchange Event Listener
   const CodeEntry = (event) => {
-    setCodeSnippet(event.target.value); // Set code snippet to state
     dispatch(setCode(event.target.value)); // Set code snippet to redux
   };
+
 
   return (
     <div className="mx-5 mt-10">
       <textarea
         onChange={CodeEntry}
-        rows="19"
-        cols="50"
+        rows="18"
+        cols="48"
         className="mockup-code w-6/12 px-10"
         placeholder={`Enter or Paste your ${language} code here`}
-        defaultValue={codeSnippet}
+        defaultValue={Code}
         wrap="off"
         autoCapitalize="off"
         autoCorrect="off"
