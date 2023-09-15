@@ -6,23 +6,23 @@ import { VitePWA } from "vite-plugin-pwa"; // pwa plugin
 object specifies various settings and options for the build process. */
 export default defineConfig({
   plugins: [
-    react(),
-    VitePWA({
-      registerType: "autoUpdate",
-      manifest: {
-        name: "Code-Editor",
-        short_name: "Code-Editor",
-        theme_color: "#ffffff",
-        description: "Code-Editor is a web-based code editor that allows you to write and run your code in a web browser.",
-        start_url: "/",
-        display: "standalone",
-        id: "com.code-editor",
-        background_color: "#ffffff",
-        lang: "en-US",
-        dir: "ltr",
-        orientation: "any",
-        prefer_related_applications: true,    
-        icons: [
+    react(), // react-swc plugin
+    VitePWA({ // pwa plugin
+      registerType: "autoUpdate", // auto update
+      manifest: { // manifest
+        name: "Code-Editor", // name
+        short_name: "Code-Editor", // short name
+        theme_color: "#ffffff", // theme color
+        description: "Code-Editor is a web-based code editor that allows you to write and run your code in a web browser.", // description
+        start_url: "/", // start url
+        display: "standalone", // standalone
+        id: "com.code-editor", // id
+        background_color: "#ffffff", // background color
+        lang: "en-US", // en-US
+        dir: "ltr", // ltr
+        orientation: "any", // any orientation
+        prefer_related_applications: true, // prefer related applications
+        icons: [ // icons
           {
             src: "/icons/PWA Icons/icon-192x192.png",
             sizes: "192x192",
@@ -50,13 +50,6 @@ export default defineConfig({
             destination: "/assets/icons",
           },
           {
-            src: "/icons/PWA Icons/icon-144x144.png",
-            sizes: "144x144",
-            type: "image/png",
-            purpose: "any maskable",
-            destination: "/assets/icons",
-          },
-          {
             src: "/icons/PWA Icons/icon-128x128.png",
             sizes: "128x128",
             type: "image/png",
@@ -76,79 +69,86 @@ export default defineConfig({
             type: "image/png",
             purpose: "any maskable",
             destination: "/assets/icons",
-          }
+          },
         ],
       },
     }),
   ],
-  cacheDir: ".cache",
-  assetsInclude: ["**/*.jpeg", "**/*.txt", "**/*.png", "**/*.svg", "**/*.gif", "**/*.jpg, **/*.webp, **/*.ico, **/*.json, **/*.webmanifest, **/*.xml, **/*.pdf, **/*.txt, **/*.md, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub"],
-  base: "/",
-  mode: "production",
-  ssr: true,
-  worker: true,
-  experimental: {
-    cssVarsInjection: false,
-    cssStaticVarInjection: true,
-    optimizeDeps: true,
-    hmrPartialAccept: true
+  cacheDir: ".cache", // cache directory
+  assetsInclude: [
+    "**/*.jpeg",
+    "**/*.txt",
+    "**/*.png",
+    "**/*.svg",
+    "**/*.gif",
+    "**/*.jpg, **/*.webp, **/*.ico, **/*.json, **/*.webmanifest, **/*.xml, **/*.pdf, **/*.txt, **/*.md, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub, **/*.woff, **/*.woff2, **/*.ttf, **/*.otf, **/*.eot, **/*.wav, **/*.mp3, **/*.mp4, **/*.webm, **/*.ogg, **/*.m4a, **/*.aac, **/*.flac, **/*.oga, **/*.opus, **/*.svg, **/*.svgz, **/*.zip, **/*.gz, **/*.tgz, **/*.brotli, **/*.7z, **/*.rar, **/*.bz2, **/*.xz, **/*.pdf, **/*.epub",
+  ], // assets include
+  base: "/", // base path
+  mode: "production", // mode
+  ssr: true, // ssr mode
+  worker: true, // worker mode
+  experimental: { // experimental mode
+    cssVarsInjection: false, // css vars injection
+    cssStaticVarInjection: true, // css static var injection
+    optimizeDeps: true, // optimize deps
+    hmrPartialAccept: true, // hmr partial accept
   },
-  publicDir: "public",
-  preview: {
-    cors: true,
-    port: 3000,
-    strictPort: true,
-    open: true,
-    hmr: true,
-    https: false,
-    host: "localhost",
-    force: false
+  publicDir: "public", // public directory
+  preview: { // preview
+    cors: true, // cors
+    port: 3000, // port
+    strictPort: true, // strict port
+    open: true, // open
+    hmr: true, // hmr
+    https: false, // https
+    host: "localhost", // host
+    force: false, // force
   },
-  build: {
-    outDir: "Code-Editor",
-    emptyOutDir: true,
-    sourcemap: true,
-    minify: true,
-    ssrManifest: true,
-    modulePreload: true,
-    copyPublicDir: true,
-    cssCodeSplit: true,
-    manifest: true,
-    cssTarget: "es2015",
-    target: "es2015",
-    assetsDir: "assets",
-    chunkSizeWarningLimit: 100000,
-    cssMinify: true,
-    ssrEmitAssets: true,
-    write: true,
-    assetsInlineLimit: 5128
+  build: { // build
+    outDir: "Code-Editor", // out directory
+    emptyOutDir: true, // empty out directory
+    sourcemap: true, // sourcemap
+    minify: true, // minify
+    ssrManifest: true, // ssr manifest
+    modulePreload: true, // module preload
+    copyPublicDir: true, // copy public directory
+    cssCodeSplit: true, // css code split
+    manifest: true, // manifest
+    cssTarget: "es2015", // css target
+    target: "es2015", // target
+    assetsDir: "assets", // assets directory
+    chunkSizeWarningLimit: 100000, // chunk size warning limit
+    cssMinify: true, // css minify
+    ssrEmitAssets: true, // ssr emit assets
+    write: true, // write
+    assetsInlineLimit: 5128, // assets inline limit
   },
-  server: {
-    port: 5173,
-    strictPort: true,
-    open: true,
-    cors: true,
-    hmr: true,
-    https: false,
-    host: "localhost",
-    force: false
+  server: { // server
+    port: 5173, // port
+    strictPort: true, // strict port
+    open: true, // open
+    cors: true, // cors
+    hmr: true, // hmr
+    https: false, // https
+    host: "localhost", // host
+    force: false, // force
   },
-  resolve: {
-    alias: {
-      "@src": "/src",
-      "@public": "/public",
-      "@app": "/src/App",
-      "@component": "/src/Components",
-      "@page": "/src/Pages",
-      "@helper": "/src/Helper",
-      "@setting": "/src/Settings",
-      "@validator": "/src/Validator",
-      "@css": "/src/css",
-      "@router": "/src/Settings/Router",
-      "@redux": "/src/App/Redux",
+  resolve: { // resolve
+    alias: { // alias
+      "@src": "/src", // src alias
+      "@public": "/public", // public alias
+      "@app": "/src/App", // app alias
+      "@component": "/src/Components", // component alias
+      "@page": "/src/Pages", // page alias
+      "@helper": "/src/Helper", // helper alias
+      "@setting": "/src/Settings", // setting alias
+      "@validator": "/src/Validator", // validator alias
+      "@css": "/src/css", // css alias
+      "@router": "/src/Settings/Router", // router alias
+      "@redux": "/src/App/Redux", // redux alias
     },
   },
-  optimizeDeps: {
-    include: ["react", "react-dom", "react-router-dom"],
-  }
+  optimizeDeps: { // optimize deps
+    include: ["react", "react-dom", "react-router-dom"], // include deps
+  },
 });

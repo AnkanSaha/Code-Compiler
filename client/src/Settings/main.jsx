@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from 'react'; // imported React from 'react';
+import ReactDOM from 'react-dom/client'; // imported ReactDOM from 'react-dom/client';
 
 // import Global Code Editor
 import Global from '@setting/Global'; // imported Global from './Global';
