@@ -8,6 +8,7 @@ import Sidebar from "@component/General/SideBar"; // Sidebar
 import Navbar from "@component/General/Navbar"; // Navbar
 import CodeEnterSide from "@component/Code/Code Enter Side"; // Code Enter Side
 import CodeController from "@component/Code/Code Controller"; // Code Controller
+import Output from "../../Components/Code/Output"; // Output
 
 // Import Function
 import {Update_Document_Title} from '@helper/Common'; // Common Functions
@@ -21,6 +22,7 @@ export default function CodePage() {
       <Navbar />
       <CodeEnterSide />
       <CodeController />
+      <Output />
       <Sidebar />
     </>
   );

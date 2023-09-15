@@ -26,12 +26,20 @@ import { useSelector } from "react-redux"; // Import useSelector hook
 
 export default function Global() {
   // Hooks
-  const { LoadingStatus } = useSelector((state) => state.status); // Get Loading Status from Redux
+  const { LoadingStatus, InternetStatus } = useSelector(
+    (state) => state.status
+  ); // Get Loading Status from Redux
   Update_InternetStatus(); // Update Internet Status
   return (
     <>
       <ChakraProvider>
-        {LoadingStatus === true ? <Loading /> : <MainRouter />}
+        {LoadingStatus === true ? (
+          <Loading />
+        ) : InternetStatus === true ? (
+          <MainRouter />
+        ) : (
+          <Loading />
+        )}
       </ChakraProvider>
     </>
   );

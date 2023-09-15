@@ -64,12 +64,18 @@ export default function CodeController() {
       isClosable: true,
     });
   };
+
+  const CompileCode = () => {
+    dispatch(setLoadingMessage("Compiling Code..."));
+    dispatch(setLoadingStatus(true));
+  };
   return (
     <div className="ml-[43.5rem] fixed top-[11.75rem] space-y-16">
       <Button
         leftIcon={<SiCompilerexplorer />}
         rightIcon={<SiCompilerexplorer />}
         colorScheme="green"
+        onClick={CompileCode}
       >
         Compile Code
       </Button>

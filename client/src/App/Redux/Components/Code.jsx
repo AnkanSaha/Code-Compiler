@@ -8,6 +8,7 @@ const CodeSlice = createSlice({
         Code: "",
         SessionID: "",
         Packages: [],
+        Output: "",
     },
     reducers: {
         setCode: (state, action) => {
@@ -22,8 +23,11 @@ const CodeSlice = createSlice({
         setPackages: (state, action) => {
             state.Packages.push(action.payload);
         },
+        setOutput: (state, action) => {
+            state.Output = action.payload;
+        },
     },
 });
 
-export const { setCode, setLanguage, setSessionID, setPackages } = CodeSlice.actions; // Export the Action
+export const { setCode, setLanguage, setSessionID, setPackages, setOutput } = CodeSlice.actions; // Export the Action
 export default CodeSlice.reducer; // 2. export default Store
