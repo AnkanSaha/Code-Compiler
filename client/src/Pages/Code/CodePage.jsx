@@ -7,6 +7,7 @@ import  {useParams} from "react-router-dom"; // Import useParams hook
 import Sidebar from "@component/General/SideBar"; // Sidebar
 import Navbar from "@component/General/Navbar"; // Navbar
 import CodeEnterSide from "@component/Code/Code Enter Side"; // Code Enter Side
+import CodeController from "@component/Code/Code Controller"; // Code Controller
 
 // Import Function
 import {Update_Document_Title} from '@helper/Common'; // Common Functions
@@ -19,6 +20,7 @@ export default function CodePage() {
     <>
       <Navbar />
       <CodeEnterSide />
+      <CodeController />
       <Sidebar />
     </>
   );

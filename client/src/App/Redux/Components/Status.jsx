@@ -5,17 +5,22 @@ const StatusSlice = createSlice({
     name: 'status',
     initialState: {
         InternetStatus : true,
+        LoadingStatus : false,
+        LoadingMessage : null,
     },
     reducers: {
         setInternetStatus: (state, action) => {
             state.InternetStatus = action.payload;
         },
-        DeleteInternetStatus: (state) => {
-            state.InternetStatus = null;
-        }
+        setLoadingStatus: (state, action) => {
+            state.LoadingStatus = action.payload;
+        },
+        setLoadingMessage: (state, action) => {
+            state.LoadingMessage = action.payload;
+        },
     },
 });
 
 
-export const {setInternetStatus, DeleteInternetStatus} = StatusSlice.actions; // Export the Action
+export const {setInternetStatus, setLoadingStatus, setLoadingMessage} = StatusSlice.actions; // Export the Action
 export default StatusSlice.reducer; // 2. export default Store
