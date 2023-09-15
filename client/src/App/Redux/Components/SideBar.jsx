@@ -14,4 +14,4 @@ const SideBarToggleStatusSlice = createSlice({
 
 
 export const {setSideBarToggleStatus} = SideBarToggleStatusSlice.actions; // Export the Action
-export default SideBarToggleStatusSlice; // 2. export default Store
+export default SideBarToggleStatusSlice.reducer; // 2. export default Store

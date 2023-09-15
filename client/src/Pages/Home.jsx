@@ -4,6 +4,8 @@ import React from "react";
 // Import Components
 import Sidebar from "@component/General/SideBar"; // Sidebar
 import Navbar from "@component/General/Navbar"; // Navbar
+import Footer from "@component/General/Footer";
+import HomeOptions from '@component/General/Home Options'; // Home Options
 
 // Import Function
 import {Update_Document_Title} from '@helper/Common'; // Common Functions
@@ -14,6 +16,8 @@ const Home = () => {
     <>
       <Navbar />
       <Sidebar />
+      <HomeOptions />
+      <Footer FooterStyle="static" />
     </>
   );
 };

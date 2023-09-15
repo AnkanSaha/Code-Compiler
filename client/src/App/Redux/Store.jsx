@@ -4,14 +4,16 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"; // 1. import
 import {isDevelopment} from '@app/App_Config';
 
 // Import Redux Slice
-import StatusSlice from '@app/Redux/Components/Status';
-import SideBarToggleStatusSlice from '@app/Redux/Components/SideBar';
+import StatusSlice from '@redux/Components/Status'; // 1. import combineReducers
+import SideBarToggleStatusSlice from '@redux/Components/SideBar'; // 1. import combineReducers
+import CodeSlice from "@redux/Components/Code"; // 1. import combineReducers
 
 // 4. Create a Main Store
 const Store = configureStore({
     reducer: combineReducers({
-        status: StatusSlice.reducer,
-        SideBarToggle: SideBarToggleStatusSlice.reducer,
+        status: StatusSlice,
+        SideBarToggle: SideBarToggleStatusSlice,
+        Code: CodeSlice,
     }),
     devTools: isDevelopment,
 })

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Logo from "@public/icons/PWA Icons/icon-152x152.png"; // Main Logo
 
 // Import Router
@@ -16,8 +17,12 @@ import { GiHamburgerMenu } from "react-icons/gi"; // Hamburger Menu Icon
 import { useDispatch } from "react-redux"; // useSelector
 import { setSideBarToggleStatus } from "@redux/Components/SideBar"; // Redux Action
 
-export default function Navbar() {
+import { useParams } from "react-router-dom"; // useParams Hook
+
+export default function Navbar({NavbarTitle}) {
+  // Hooks
   const Updater = useDispatch(); // Redux Updater
+  const { language } = useParams(); // useParams Hook
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -34,7 +39,9 @@ export default function Navbar() {
         <Link to="/" className="flex items-center">
           <img src={Logo} className="h-8 mr-3" alt="MainLogo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            {AppName}
+            {
+              language === undefined ? `${NavbarTitle} - ${AppName}` : `${language} - Code Editor`
+            }
           </span>
         </Link>
         <button
@@ -94,3 +101,7 @@ export default function Navbar() {
     </nav>
   );
 }
+
+Navbar.defaultProps = {
+  NavbarTitle: "Home"
+};

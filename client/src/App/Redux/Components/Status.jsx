@@ -18,4 +18,4 @@ const StatusSlice = createSlice({
 
 
 export const {setInternetStatus, DeleteInternetStatus} = StatusSlice.actions; // Export the Action
-export default StatusSlice; // 2. export default Store
+export default StatusSlice.reducer; // 2. export default Store
