@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from "react"; //
+import React from "react"; // Import react module
+import "@css/General.css"; // General CSS
 
 // Import Components
 import {
@@ -19,14 +20,13 @@ import {
 } from "@chakra-ui/react"; // Chakra UI Button
 
 // Import Icons
-import { SiCompilerexplorer } from "react-icons/si"; // Si Compiler Explorer Icon
-import { ImBoxAdd } from "react-icons/im"; // Im Box Add Icon
-import { FaDownload } from "react-icons/fa"; // Fa Download Icon
-import { MdLockReset } from "react-icons/md"; // Md Lock Reset Icon
+import CompileIcons from "@assets/compile.png"; // Compile Icons
+import DownloadIcons from "@assets/download.png"; // Compile Icons
+import AddPackageIcons from "@assets/add.jpeg"; // Add Package Icons
 
 // Redux
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
-import { setCode, setPackages } from "@redux/Components/Code"; // Import setCode action
+import { setPackages, setOutput } from "@redux/Components/Code"; // Import setCode action
 import { setLoadingStatus, setLoadingMessage } from "@redux/Components/Status"; // Import setCode action
 
 export default function CodeController() {
@@ -38,14 +38,6 @@ export default function CodeController() {
 
   // State
   const [PackageName, setPackageName] = React.useState(""); // Package Name
-
-  // Function for Reset Code
-  const ResetCode = () => {
-    dispatch(setLoadingMessage("Resetting Code..."));
-    dispatch(setLoadingStatus(true));
-    dispatch(setCode(""));
-    dispatch(setLoadingStatus(false));
-  };
 
   // On Change Functions
   const onPackageNameChange = (e) => {
@@ -78,8 +70,8 @@ export default function CodeController() {
       });
       return;
     }
-    dispatch(setLoadingMessage("Compiling Code..."));
-    dispatch(setLoadingStatus(true));
+    document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+    dispatch(setOutput("")); // Set Output to empty
   };
 
   // Function for Download File
@@ -116,46 +108,37 @@ export default function CodeController() {
     dispatch(setLoadingStatus(true));
   };
   return (
-    <div className="ml-[43.5rem] fixed top-[11.75rem] space-y-12">
-      <Button
-        leftIcon={<SiCompilerexplorer />}
-        rightIcon={<SiCompilerexplorer />}
-        colorScheme="green"
-        onClick={CompileCode}
-      >
-        Compile Code
-      </Button>
-      <br />
-      <Button
-        leftIcon={<ImBoxAdd />}
-        rightIcon={<ImBoxAdd />}
-        colorScheme="blue"
-        onClick={onOpen}
-      >
-        {" "}
-        Add Packages{" "}
-      </Button>
-      <br />
-      <Button
-        leftIcon={<FaDownload />}
-        rightIcon={<FaDownload />}
-        colorScheme="red"
-        onClick={DownloadFile}
-      >
-        {" "}
-        Download File{" "}
-      </Button>
-      <br />
-      <Button
-        leftIcon={<MdLockReset />}
-        rightIcon={<MdLockReset />}
-        colorScheme="purple"
-        onClick={ResetCode}
-      >
-        {" "}
-        Clear Editor{" "}
-      </Button>
-
+    <div className="fixed ml-[42.25rem] top-[5.75rem] space-x-7">
+      <div className="tooltip" data-tip="Compile Code">
+        <button className="btn btn-circle btn-outline" onClick={CompileCode}>
+          <img
+            src={CompileIcons}
+            id="CompileIcons"
+            className=""
+            alt="CompileIcons"
+          />
+        </button>
+      </div>
+      <div className="tooltip" data-tip="Add Packages">
+        <button className="btn btn-circle btn-outline" onClick={onOpen}>
+          <img
+            src={AddPackageIcons}
+            id="AddPackageIcons"
+            className=""
+            alt="AddPackageIcons"
+          />
+        </button>
+      </div>
+      <div className="tooltip" data-tip="Download File">
+        <button className="btn btn-circle btn-outline" onClick={DownloadFile}>
+          <img
+            src={DownloadIcons}
+            id="DownloadIcons"
+            className=""
+            alt="DownloadIcons"
+          />
+        </button>
+      </div>
       {/* Add Packages Modal */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

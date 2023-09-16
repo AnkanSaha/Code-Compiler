@@ -108,13 +108,13 @@ export default function CodeEnterSide() {
   };
   return (
     <>
-      <div className="mx-5 mt-10">
+      <div className="mx-5 mt-[5rem]">
         <textarea
           onChange={CodeEntry}
           ref={InitialCodeSnippetRef}
-          rows="18"
+          rows="16"
           cols="48"
-          className="mockup-code w-6/12 px-10"
+          className="mockup-code w-8/12 px-10"
           placeholder={`Enter or Paste your ${language} code here`}
           wrap="off"
           autoCapitalize="off"

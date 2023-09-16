@@ -146,6 +146,7 @@ export default defineConfig({
       "@css": "/src/css", // css alias
       "@router": "/src/Settings/Router", // router alias
       "@redux": "/src/App/Redux", // redux alias
+      "@assets": "/src/assets", // assets alias
     },
   },
   optimizeDeps: { // optimize deps
