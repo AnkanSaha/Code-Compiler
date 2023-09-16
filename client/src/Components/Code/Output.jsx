@@ -42,10 +42,10 @@ export default function Output() {
   return (
     <div>
       <textarea
-        rows="16"
+        rows="15"
         disabled={true}
         cols="48"
-        className="textarea textarea-bordered top-[7rem] ml-[56.25rem] fixed"
+        className="textarea textarea-bordered top-[9rem] ml-[57.25rem] fixed"
         placeholder="Output will be shown here"
         ref={OutputRef}
         // value={Output}

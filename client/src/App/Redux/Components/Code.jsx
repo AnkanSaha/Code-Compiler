@@ -8,7 +8,7 @@ const CodeSlice = createSlice({
     Code: "",
     SessionID: "",
     Packages: [],
-    Output: "",
+    Output: "Hello World",
     FileName: "",
   },
   reducers: {
