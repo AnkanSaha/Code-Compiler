@@ -66,6 +66,7 @@ export default function CodeEnterSide() {
   // Effects for Code finding right code snippet
   React.useEffect(() => {
     onOpen(); // Open Modal
+    dispatch(setFileName("")); // Set FileName to empty
     const matchedElement = CodeSnippet.find(
       (element) => element.Language === language
     );
@@ -95,11 +96,12 @@ export default function CodeEnterSide() {
 
   // On Submit Event Listener
   const SetFileNameInRedux = () => {
-    dispatch(setFileName(FileName)); // Set FileName in Redux
+    const LanguageDetails= CodeSnippet.find((item) => item.Language === language);
+    dispatch(setFileName(`${FileName}${LanguageDetails.Extension}`)); // Set FileName in Redux
     onClose(); // Close Modal
     ToastMessage({
       title: "File Name Set Successfully",
-      description: `File Name Set Successfully, Now you can compile your code with ${FileName}`,
+      description: `File Name Set Successfully, Now you can compile your code with ${FileName}${LanguageDetails.Extension}`,
       status: "success",
       duration: 5000,
       isClosable: true,
@@ -130,11 +132,11 @@ export default function CodeEnterSide() {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>File Name with extension</FormLabel>
+              <FormLabel>File Name without extension</FormLabel>
               <Input
                 onChange={onFileNameChange}
                 value={FileName}
-                placeholder="Enter The exact file name with extension"
+                placeholder="Enter The exact file name without extension"
               />
             </FormControl>
           </ModalBody>
