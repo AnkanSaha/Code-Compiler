@@ -1,11 +1,13 @@
 export const CodeSnippet = [
     {
         Language: "Javascript",
-        Code: `console.log("Hello Javascript");`
+        Code: `console.log("Hello Javascript");`,
+        Extension: ".js"
     },
     {
         Language: "TypeScript",
-        Code: `console.log("Hello TypeScript");`
+        Code: `console.log("Hello TypeScript");`,
+        Extension: ".ts"
     },
     {
         Language: "Java",
@@ -13,7 +15,8 @@ export const CodeSnippet = [
             public static void main(String[] args) {
                 System.out.println("Hello Java");
             }
-        }`
+        }`,
+        Extension: ".java"
     },
     {
         Language: "C++",
@@ -22,13 +25,15 @@ export const CodeSnippet = [
         int main() {
             std::cout << "Hello, World!" << std::endl;
             return 0;
-        }`
+        }`,
+         Extension: ".cpp"
     },
     {
         Language: "Dart",
         Code: `void main() {
             print("Hello Dart");
-        }`
+        }`,
+        Extension: ".dart"
     },
     {
         Language: "C",
@@ -36,7 +41,8 @@ export const CodeSnippet = [
         int main() {
             printf("Hello C");
             return 0;
-        }`
+        }`,
+        Extension: ".c"
     },
     {
         Language: "Go",
@@ -44,16 +50,19 @@ export const CodeSnippet = [
         import "fmt"
         func main() {
             fmt.Println("Hello Go")
-        }`
+        }`,
+        Extension: ".go"
     },
     {
         Language: "Ruby",
-        Code: `puts "Hello Ruby"`
+        Code: `puts "Hello Ruby"`,
+        Extension: ".rb"
     },
     {
         Language: "Rust",
         Code: `fn main() {
             println!("Hello Rust");
-        }`
+        }`,
+        Extension: ".rs"
     }
 ]

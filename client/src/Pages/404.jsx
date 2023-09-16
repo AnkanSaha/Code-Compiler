@@ -14,7 +14,10 @@ export default function NotFound() {
   return (
     <div>
       <Navbar NavbarTitle="404 { Page Not Found }" />
-      <Sidebar/>
+      <Sidebar />
+      <h1 className="text-center font-bold text-4xl mt-[13.25rem]">
+        404 - Page Not Found!
+      </h1>
       <Footer />
     </div>
   );
