@@ -96,7 +96,19 @@ export default function CodeEnterSide() {
 
   // On Submit Event Listener
   const SetFileNameInRedux = () => {
-    const LanguageDetails= CodeSnippet.find((item) => item.Language === language);
+    const LanguageDetails= CodeSnippet.find((item) => item.Language === language); // Get Language Details
+
+    // Check if FileName includes extension
+    if(FileName.includes(LanguageDetails.Extension)){
+      ToastMessage({
+        title: "Do not include extension",
+        description: `Do not include extension in file name`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     dispatch(setFileName(`${FileName}${LanguageDetails.Extension}`)); // Set FileName in Redux
     onClose(); // Close Modal
     ToastMessage({

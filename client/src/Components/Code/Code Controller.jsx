@@ -61,6 +61,7 @@ export default function CodeController() {
 
   // Function for Compile Code
   const CompileCode = () => {
+    dispatch(setOutput("")); // Set Output to Redux to empty
     if (FileName === "") {
       ToastMessage({
         title: "File Name Empty",
@@ -72,7 +73,7 @@ export default function CodeController() {
       return;
     }
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-    dispatch(setOutput("")); // Set Output to empty
+      dispatch(setOutput("Hello This is Output")); // Set Output to Redux
   };
 
   // Function for Download File
