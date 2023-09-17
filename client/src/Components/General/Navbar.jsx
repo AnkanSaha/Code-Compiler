@@ -80,20 +80,22 @@ export default function Navbar({NavbarTitle}) {
               </Link>
             </li>
             <li>
-              <Link
-                to="/about"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              <a
+                href="https://github.com/AnkanSaha/Code-Editor"
+                target="_blank"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" rel="noreferrer"
               >
-                About
-              </Link>
+               Get Source Code
+              </a>
             </li>
             <li>
-              <Link
-                to="/privacy-policy"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              <a
+                href="https://www.postman.com/"
+                target="_blank"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" rel="noreferrer"
               >
-                Privacy Policy
-              </Link>
+                Use Postman
+              </a>
             </li>
           </ul>
         </div>
