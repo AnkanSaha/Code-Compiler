@@ -5,6 +5,9 @@ const ExpressRateLimit = require('express-rate-limit'); // Import Express Rate L
 const {JSONSendResponse} = require('../Helper/Response'); // Import Response
 const {StatusCodes} = require('../config/keys/keys'); // Import Keys
 
+//sub routes
+const compileRoute = require('./compileRoute.js')
+
 // Create Router
 const Manager = Router(); // Create Router
 
@@ -22,9 +25,9 @@ Manager.use(ExpressRateLimit({
 
 // Link All Sub Routers
 // Manager.use('/get', ()=>{}); // Link Get Router
-Manager.use('/post', ()=>{}); // Link Post Router
-Manager.use('/put', ()=>{}); // Link Put Router
-Manager.use('/delete', ()=>{}); // Link Delete Router
+Manager.use('/compile', compileRoute); // Link Post Router
+Manager.use('/download', ()=>{}); // Link Put Router
+// Manager.use('/delete', ()=>{}); // Link Delete Router
 
 // Send Response if any request is not allowed
 Manager.all('*', (Request, Response) => {

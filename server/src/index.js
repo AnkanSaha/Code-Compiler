@@ -52,7 +52,7 @@ else {
 	Server.set('trust proxy', ()=> true); // Enable All Proxy Settings
     // Link All Router as MainRouter
 	Server.use('/api', json(), urlencoded({extended:true, limit:5000000 * 1000}), CheckHeader, MainRouter); // Link Main Router
-	magenta('Linked All API Endpoints with PaisaPay Server'); // Print Success Message
+	magenta('Linked All API Endpoints with Code Editor Server'); // Print Success Message
 
     // Configure Static Folder
 	Server.use(Express.static(StringKeys.StaticDirectoryName)); // Configure Static Folder
