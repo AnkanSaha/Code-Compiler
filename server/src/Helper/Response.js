@@ -1,5 +1,5 @@
 // Note: Response Helper Module
-module.exports.JSONSendResponse = (response, statusCode, Title, message, data) => {
+module.exports.JSONSendResponse = (statusCode, Title, message, data, response) => {
     response.status(statusCode).json({
         StatusCode: statusCode,
         Title: Title,
@@ -12,3 +12,4 @@ module.exports.JSONSendResponse = (response, statusCode, Title, message, data) =
 module.exports.SendFileResponse = (response, statusCode, Filename, rootName) => {
     response.status(statusCode).sendFile(Filename, { root: rootName });
 };
+
