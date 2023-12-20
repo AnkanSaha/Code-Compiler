@@ -25,7 +25,7 @@
     "express": "^4.18.2",
     "express-rate-limit": "^6.9.0",
     "jwt-destroy": "^3.5.7",
-    "mongoland": "^4.4.1",
+    "mongosuper": "^4.4.3",
     "outers": "^2.3.5"
   },
   "devDependencies": {
