@@ -1,4 +1,4 @@
-const {Mongo} = require('mongoland'); // import mongoland
+const {Mongo} = require('mongosuper'); // import mongoland
 
 const {DatabaseKeys} = require('../../keys/keys'); // import DatabaseKeys
 
