@@ -4,14 +4,15 @@
   "version": "1.2.5",
   "type": "module",
   "scripts": {
-    "dev": "npm run lint && vite --host -- DEV=true",
-    "build": "npm run lint && vite build -- DEV=false",
+    "dev": "npm run lint && vite --host",
+    "build": "npm run lint && vite build",
     "lint": "eslint ./src/**/*.{js,jsx} --fix",
     "preview": "npm run lint && vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "react": "^18.2.0",
+    "react-caches": "^4.3.9",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
@@ -35,7 +36,7 @@
     "framer-motion": "^10.16.4",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.12",
+    "vite": "^4.5.1",
     "vite-plugin-pwa": "^0.16.4"
   }
 }
