@@ -1,0 +1,14 @@
+{
+  "name": "code-editor",
+  "version": "1.0.3",
+  "description": "Code-Editor is a Online Code Compiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "Code"
+  ],
+  "author": "Ankan Saha",
+  "license": "Apache-2.0"
+}
