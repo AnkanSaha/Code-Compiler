@@ -9,6 +9,9 @@ import {MongoConnector} from '../Database/MongoDB.db.js'; // MongoSuper for Crea
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
 import InjectIP from '../Middleware/InjectIP.middleware.js'; // Inject IP Middleware
 
+// Import Main Router
+import MainRouter from '../Routes/Router.js'; // Import Main Router
+
 // Setup Express Server
 
 // CPU Count Copy for Process
@@ -55,6 +58,7 @@ if (cluster.isPrimary) {
       urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000}),
       rateLimiter, // Rate Limiter Middleware Function
       InjectIP, // Inject IP Middleware Function
+      MainRouter, // Main Router
   ); // Link Main Router
 
   Console.magenta(`Linked All API Endpoints with ${StringKeys.AppName} Server`); // Print Success Message for Router Linking
