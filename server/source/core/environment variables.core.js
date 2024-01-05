@@ -27,5 +27,5 @@ export const StringKeys = {
 export const DatabaseKeys = {
   MongoDB: String(process.env.MONGODB_URI),
   DB_Name: String(process.env.DB_NAME) || 'code-editor',
-  CompiledFileRecord: String('compiledFileRecord'),
+  CollectionName: String('compiledFileRecord'),
 };
