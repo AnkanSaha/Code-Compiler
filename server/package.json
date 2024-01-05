@@ -10,6 +10,10 @@
     "start": "pm2 start ./source/index.js --name code-editor",
     "stop": "pm2 stop code-editor"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnkanSaha/Code-Editor"
+  },
   "keywords": [
     "Code",
     "Editor",
@@ -28,6 +32,34 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "nodemon": "^3.0.2"
-  }
+    "nodemon": "^3.0.2",
+    "outers": "^3.6.2"
+  },
+  "type": "module",
+  "sponsor": {
+    "url": "https://github.com/sponsors/AnkanSaha"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0",
+    "vscode": "^1.22.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=6.0.0"
+  },
+  "engineStrict": true,
+  "os": [
+    "linux",
+    "darwin",
+    "win32",
+    "x64",
+    "arm64",
+    "arm",
+    "x86"
+  ],
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/"
+    }
+  ]
 }
