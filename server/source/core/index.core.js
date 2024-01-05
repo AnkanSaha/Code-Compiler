@@ -4,8 +4,9 @@ import {Console} from 'outers'; // Import Console from outers
 import cluster from 'cluster'; // Import Cluster
 import {StringKeys, NumberKeys} from './environment variables.core.js'; // Env Variables
 
-// Setup Limiter Middleware
+// Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
+import InjectIP from '../Middleware/InjectIP.middleware.js'; // Inject IP Middleware
 
 // Setup Express Server
 
@@ -47,11 +48,12 @@ if (cluster.isPrimary) {
   // Enable All Proxy Settings for Server Security
   Server.set('trust proxy', ()=>true); // Enable All Proxy Settings
 
-  // Link All Router as MainRouter
+  // Link All Router as MainRouter with all main middlewares
   Server.use('/api',
       json({limit: '999mb'}),
       urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000}),
       rateLimiter, // Rate Limiter Middleware Function
+      InjectIP, // Inject IP Middleware Function
   ); // Link Main Router
 
   Console.magenta(`Linked All API Endpoints with ${StringKeys.AppName} Server`); // Print Success Message for Router Linking
