@@ -3,6 +3,7 @@ import express, {json, urlencoded} from 'express'; // Import Express
 import {Console} from 'outers'; // Import Console from outers
 import cluster from 'cluster'; // Import Cluster
 import {StringKeys, NumberKeys} from './environment variables.core.js'; // Env Variables
+import {MongoConnector} from '../Database/MongoDB.db.js'; // MongoSuper for Create Connection only
 
 // Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
@@ -64,7 +65,10 @@ if (cluster.isPrimary) {
   // Server Listen
   try {
     Server.listen(NumberKeys.PORT, async () => {
-      Console.green(`🚀 Database Connected & Server is listening on Port ${NumberKeys.PORT} 🚀`); // Print Message for Server Start
+      const Status = await MongoConnector.Connect(); // Connect to MongoDB
+      Status.status === true ?
+      Console.green(`🚀 Database Connected & Server is listening on Port ${NumberKeys.PORT} 🚀`) : // Print Message for Server Start
+      Console.red(`Error in Connecting Database : ${Status.error}`); // Print Error Message for Server Start
     }); // Start Server on Port
   } catch (error) {
     Console.red(`Error in Starting Server : ${error}`); // Print Error Message for Server Start
