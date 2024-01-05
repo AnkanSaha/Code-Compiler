@@ -10,7 +10,7 @@ import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Ra
 import InjectIP from '../Middleware/InjectIP.middleware.js'; // Inject IP Middleware
 
 // Import Main Router
-import MainRouter from '../Routes/Router.js'; // Import Main Router
+import MainRouter from '../Routers/Router.js'; // Import Main Router
 
 // Setup Express Server
 
