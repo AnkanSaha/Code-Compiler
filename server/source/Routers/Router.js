@@ -5,8 +5,10 @@ import {StatusCodes, Response as Serve} from 'outers'; // Import Status Codes
 const MainRouter = Router(); // Main Router
 
 // import All Sub Routers
+import CompileRouter from './Routes/CompileCode.Routes.js'; // Compile Code Router
 
 // Link All Sub Routers to Main Router
+MainRouter.use('/post', CompileRouter); // Compile Code Router
 
 // Response Not Allowed Request
 MainRouter.all('*', (Request, Response)=>{
