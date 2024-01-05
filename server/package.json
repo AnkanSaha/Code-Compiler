@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint",
-    "lint": "eslint ./source/**/*.{js,ts, mjs, cjs} --fix",
-    "dev": "nodemon ./source/index.js",
-    "start": "pm2 start ./source/index.js --name code-editor",
+    "lint": "eslint . --ext .js",
+    "dev": "npm test && nodemon ./source/core/index.js",
+    "start": "pm2 start ./source/core/index.js --name code-editor",
     "stop": "pm2 stop code-editor"
   },
   "repository": {
