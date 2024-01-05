@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run lint",
     "lint": "eslint . --ext .js",
-    "dev": "npm test && nodemon ./source/core/index.js",
-    "start": "pm2 start ./source/core/index.js --name code-editor",
+    "dev": "npm test && nodemon ./source/core/index.core.js",
+    "start": "pm2 start ./source/core/index.core.js --name code-editor",
     "stop": "pm2 stop code-editor"
   },
   "repository": {
@@ -32,6 +32,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
     "nodemon": "^3.0.2",
     "outers": "^3.6.2"
   },

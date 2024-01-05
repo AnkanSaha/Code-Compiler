@@ -2,9 +2,10 @@
 import express, {json, urlencoded} from 'express'; // Import Express
 import {Console} from 'outers'; // Import Console from outers
 import cluster from 'cluster'; // Import Cluster
-import {StringKeys, NumberKeys} from './environment variables.js'; // Env Variables
+import {StringKeys, NumberKeys} from './environment variables.core.js'; // Env Variables
 
-// Router Related Imports
+// Setup Limiter Middleware
+import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
 
 // Setup Express Server
 
@@ -50,6 +51,7 @@ if (cluster.isPrimary) {
   Server.use('/api',
       json({limit: '999mb'}),
       urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000}),
+      rateLimiter, // Rate Limiter Middleware Function
   ); // Link Main Router
 
   Console.magenta(`Linked All API Endpoints with ${StringKeys.AppName} Server`); // Print Success Message for Router Linking
