@@ -4,11 +4,30 @@
   "description": "Code-Editor is a Online Code Compiler",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm run lint",
+    "lint": "eslint ./source/**/*.{js,ts, mjs, cjs} --fix",
+    "dev": "nodemon ./source/index.js",
+    "start": "pm2 start ./source/index.js --name code-editor",
+    "stop": "pm2 stop code-editor"
   },
   "keywords": [
-    "Code"
+    "Code",
+    "Editor",
+    "Compiler",
+    "Online",
+    "Code-Editor",
+    "Code-Compiler",
+    "Online-Code-Editor"
   ],
   "author": "Ankan Saha",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
 }

@@ -1,5 +1,8 @@
+# Client files
 client/node_modules
 client/Code-Editor
 client/.cache
+
+# Server files
 server/node_modules
 server/.env
