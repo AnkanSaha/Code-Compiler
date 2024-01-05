@@ -9,6 +9,9 @@ import {MongoConnector} from '../Database/MongoDB.db.js'; // MongoSuper for Crea
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
 import InjectIP from '../Middleware/InjectIP.middleware.js'; // Inject IP Middleware
 
+// Import Utils
+import Creator from '../utils/directoryCreator.utils.js'; // Import Directory Creator
+
 // Import Main Router
 import MainRouter from '../Routers/Router.js'; // Import Main Router
 
@@ -65,6 +68,10 @@ if (cluster.isPrimary) {
 
   // Configure Static Folder
   Server.use(express.static(StringKeys.StaticDirectoryName)); // Configure Static Folder
+
+
+  // Create Directory
+  Creator(); // Create Directory for Uncompiled Code
 
   // Server Listen
   try {
