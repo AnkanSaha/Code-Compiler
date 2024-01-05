@@ -15,12 +15,13 @@ export const StringKeys = {
   CORS_URL: String(process.env.ALLOWED_ORIGINS) || '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
   JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) || '10d',
-  StaticDirectoryName: String('Code'),
+  StaticDirectoryName: String('CompiledCode'),
   // Server Details
   Platform: String(platform()),
   Architecture: String(arch()),
   FreeRam: Number((freemem() / 1024 / 1024 / 1024).toFixed(2)),
   Model: String(cpus()[0].model),
+  UncompiledFileDirectory: String('UncompiledCode'),
 };
 
 // Database Keys

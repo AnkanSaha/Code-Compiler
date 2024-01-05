@@ -8,6 +8,7 @@
         "jsdoc",
         "mongosuper",
         "reduxjs",
-        "Saha"
+        "Saha",
+        "Uncompiled"
     ]
 }

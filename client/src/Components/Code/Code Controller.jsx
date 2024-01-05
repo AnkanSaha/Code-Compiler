@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react"; // Import react module
 import "@css/General.css"; // General CSS
+import { APIservice } from "../../App/App_Config"; // APICalls
 
 // Import Components
 import {
@@ -33,7 +34,7 @@ import { setLoadingStatus, setLoadingMessage } from "@redux/Components/Status"; 
 export default function CodeController() {
   // hooks
   const dispatch = useDispatch(); // Get dispatch from useDispatch hook
-  const { Language, FileName, SessionID } = useSelector((state) => state.Code); // Get code from Redux
+  const { Language, FileName, SessionID, Packages, Code } = useSelector((state) => state.Code); // Get code from Redux
   const { isOpen, onOpen, onClose } = useDisclosure(); // Get isOpen, onOpen, onClose from useDisclosure hook
   const ToastMessage = useToast(); // Get toast from useToast hook
 
@@ -60,7 +61,7 @@ export default function CodeController() {
   };
 
   // Function for Compile Code
-  const CompileCode = () => {
+  const CompileCode = async () => {
     dispatch(setOutput("")); // Set Output to Redux to empty
     if (FileName === "") {
       ToastMessage({
@@ -72,6 +73,15 @@ export default function CodeController() {
       });
       return;
     }
+    const Response = await APIservice.Post('/api/post/compile', {
+      Language: Language,
+      FileName: FileName,
+      SessionID: SessionID,
+      Packages: Packages,
+      Code: Code,
+    })
+
+    console.log(Response)
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
       dispatch(setOutput("Hello This is Output")); // Set Output to Redux
   };
