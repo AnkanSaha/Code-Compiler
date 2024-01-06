@@ -131,7 +131,7 @@ export default function CodeController() {
           />
         </button>
       </div>
-      <div className="tooltip" data-tip="Add Packages">
+      <div className="tooltip" data-tip="Add Packages (Only for JavasScript/TypeScript)">
         <button className="btn btn-circle btn-outline" onClick={onOpen}>
           <img
             src={AddPackageIcons}
