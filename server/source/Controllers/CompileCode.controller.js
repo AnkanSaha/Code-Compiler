@@ -1,6 +1,6 @@
 import fs from 'fs'; // File System Module
 import {join} from 'path'; // Import the path module
-// import {StringKeys} from '../core/environment variables.core.js'; // Import Environment Variables
+import PackageInstaller from './Functions/Package-Installer.js'; // Import Package Installer
 import {Response as Serve, StatusCodes} from 'outers'; // Import Response from Outers
 import {LangTypesDirectory} from '../core/environment variables.core.js'; // Environmental Variables
 
@@ -14,28 +14,32 @@ export default async function Compile(Request, Response) {
   console.log(Request.body);
 
   // Select Preferred Directory
-  const PreferredDir = LangTypesDirectory.find((element) =>
+  const PreferredLanguageDir = LangTypesDirectory.find((element) =>
     element.language.toLowerCase() === Language.toLowerCase()); // Find Preferred Directory
-  console.log(Language);
-  const FullPathOfFile = `${join(`${PreferredDir.directoryName}/${SessionID}-${FileName}`)}`; // Full Path of File to be Compiled
+
+  // Check if Preferred Directory Exists in Environmental Variables
+  const FilePath = `${join(`${PreferredLanguageDir.directoryName}/${SessionID}-${FileName}`)}`; // Path of Uncompiled File
 
   // Find sessionID in MongoDB if it exists
   const ExistSessionID = await MongooseModel.find({sessionID: SessionID}); // Find SessionID in MongoDB
-  console.log(ExistSessionID);
 
   // Check if SessionID exists in MongoDB
   if (ExistSessionID.length === 0) {
   // // Write Code to File
-    await fs.promises.writeFile(FullPathOfFile,
+    await fs.promises.writeFile(FilePath,
         Code, 'utf-8'); // Write Code to File System if SessionID does not exist in MongoDB
-  } else if (ExistSessionID.length > 1) {
-    Response.status(500).send('SessionID exists more than once in MongoDB'); // Send 500 Status Code
+
+    // Check if Any Packages are Required
+    if (Packages.length > 0) {
+      // Install Packages
+      await PackageInstaller(PreferredLanguageDir, Packages); // Install Packages
+    }
 
     // Create a mongoDB document for the SessionID if it does not exist
-    const CompilerDataModel = MongooseModel.create({
+    const CompilerDataModel = new MongooseModel({
       FileName: `${SessionID}-${FileName}`,
       FileSize: Code.length,
-      FilePath: FullPathOfFile,
+      FilePath: FilePath,
       FileExtraPackages: Packages,
       sessionID: SessionID,
       LanguageName: Language,
@@ -44,7 +48,49 @@ export default async function Compile(Request, Response) {
       BuildStatus: 'Pending',
     }); // Create MongoDB Document
     const DataStatus = await CompilerDataModel.save(); // Save MongoDB Document
-    console.log(DataStatus);
+
+    // Check if MongoDB Document was saved
+    if (!DataStatus) {
+      Serve.JSON({
+        response: Response,
+        status: false,
+        statusCode: StatusCodes.REQUEST_TIMEOUT,
+        Title: 'Unable to Compile Code',
+        message: 'Unable to Compile Code, please try again later or contact support',
+        data: undefined,
+      });
+      return; // Return if MongoDB Document was not saved
+    }
+  } else if (ExistSessionID.length > 0) {
+    // Delete Previous File if Same SessionID Exists
+    await fs.promises.unlink(ExistSessionID[0].FilePath); // Delete Previous File if Same SessionID Exists
+
+    // // Write Code to File
+    await fs.promises.writeFile(ExistSessionID[0].FilePath,
+        Code, 'utf-8'); // Write Code to File System if SessionID does not exist in MongoDB
+
+    // Check if Any Packages are Required
+    if (Packages.length > 0) {
+      // Install Packages
+      await PackageInstaller(PreferredLanguageDir, Packages); // Install Packages
+    }
+    // Update MongoDB Document for the SessionID if it exists
+    const updateStatus = await MongooseModel.updateOne({sessionID: SessionID},
+        {BuildStatus: 'Pending', BuildTime: Date.now(), BuilderIP: RequesterIP,
+          FileSize: Code.length, FileExtraPackages: Packages}); // Update MongoDB Document for the SessionID
+
+    // Check if MongoDB Document was updated
+    if (updateStatus.modifiedCount === 0) {
+      Serve.JSON({
+        response: Response,
+        status: false,
+        statusCode: StatusCodes.REQUEST_TIMEOUT,
+        Title: 'Unable to Compile Code',
+        message: 'Unable to Compile Code, please try again later or contact support',
+        data: undefined,
+      });
+      return; // Return if MongoDB Document was not updated
+    }
   } else {
     Serve.JSON({
       response: Response,

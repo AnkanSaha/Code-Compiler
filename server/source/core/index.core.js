@@ -77,10 +77,7 @@ if (cluster.isPrimary) {
   // Server Listen
   try {
     Server.listen(NumberKeys.PORT, async () => {
-      await connect(`${DatabaseKeys.MongoDB}${DatabaseKeys.DB_Name}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }); // Connect to MongoDB
+      await connect(`${DatabaseKeys.MongoDB}${DatabaseKeys.DB_Name}`); // Connect to MongoDB
       Console.green(`🚀 Database Connected & Server is listening on Port ${NumberKeys.PORT} 🚀`); // Print Message for Server Start
     }); // Start Server on Port
   } catch (error) {
