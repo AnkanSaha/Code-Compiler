@@ -73,17 +73,24 @@ export default function CodeController() {
       });
       return;
     }
+
+
+    document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
     const Response = await APIservice.Post('/api/post/compile', {
       Language: Language,
       FileName: FileName,
       SessionID: SessionID,
       Packages: Packages,
       Code: Code,
-    })
-
+    });
     console.log(Response)
+    if(Response.statusCode === 200){
+      dispatch(setOutput(Response.data)); // Set Output to Redux
+    }
+    else {
+      dispatch(setOutput(Response.data.stderr)); // Set Output to Redux
+    }
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-      dispatch(setOutput("Hello This is Output")); // Set Output to Redux
   };
 
   // Function for Download File
