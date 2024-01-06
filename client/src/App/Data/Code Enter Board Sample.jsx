@@ -5,9 +5,9 @@ export const CodeSnippet = [
         Extension: ".js"
     },
     {
-        Language: "TypeScript",
-        Code: `console.log("Hello TypeScript");`,
-        Extension: ".ts"
+        Language: "Python",
+        Code: `print("Hello Python")`,
+        Extension: ".py"
     },
     {
         Language: "Java",
