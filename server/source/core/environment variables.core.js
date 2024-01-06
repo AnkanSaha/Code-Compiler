@@ -60,7 +60,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
   },
   {
-    language: 'C Language',
+    language: 'C',
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
   },
