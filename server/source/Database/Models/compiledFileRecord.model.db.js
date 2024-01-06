@@ -7,5 +7,5 @@ export default {
   LanguageName: {type: String, required: true, index: true, lowercase: true},
   BuilderIP: {type: String, required: true, index: false},
   BuildTime: {type: Date, required: true, index: false, default: Date.now},
-  BuildStatus: {type: Boolean, required: true, index: false, default: false},
+  BuildStatus: {type: String, required: true, index: false, default: 'Pending', enum: ['Pending', 'Success', 'Failed']},
 };
