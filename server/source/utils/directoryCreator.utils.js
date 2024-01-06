@@ -5,9 +5,14 @@ import {StringKeys} from '../core/environment variables.core.js'; // Import the 
 
 export default async function Creator() {
 // Ensure All directory exists
-  const UncompiledFileDirectory = join(`${StringKeys.UncompiledFileDirectory}/`);
-  if (!fs.existsSync(UncompiledFileDirectory)) {
-    await fs.promises.mkdir(UncompiledFileDirectory, {recursive: true});
+  const InterpretedFileDirectory = join(`${StringKeys.InterpretedLangDirectoryName}/`);
+  if (!fs.existsSync(InterpretedFileDirectory)) {
+    await fs.promises.mkdir(InterpretedFileDirectory, {recursive: true});
+  }
+
+  const CompiledFileDirectory = join(`${StringKeys.CompileLangDirectoryName}/`);
+  if (!fs.existsSync(CompiledFileDirectory)) {
+    await fs.promises.mkdir(CompiledFileDirectory, {recursive: true});
   }
 
   const StaticDirectoryName = join(`${StringKeys.StaticDirectoryName}/`);
