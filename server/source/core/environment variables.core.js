@@ -21,7 +21,8 @@ export const StringKeys = {
   Architecture: String(arch()),
   FreeRam: Number((freemem() / 1024 / 1024 / 1024).toFixed(2)),
   Model: String(cpus()[0].model),
-  UncompiledFileDirectory: String('UncompiledCode'),
+  CompileLangDirectoryName: String('CompiledLang'),
+  InterpretedLangDirectoryName: String('InterpretedLang'),
 };
 
 // Database Keys
@@ -30,3 +31,52 @@ export const DatabaseKeys = {
   DB_Name: String(process.env.DB_NAME) || 'code-editor',
   CollectionName: String('compiledFileRecord'),
 };
+
+// Language & Their Types & Directory Name
+export const LangTypesDirectory = [
+  {
+    language: 'Javascript',
+    type: 'interpreted',
+    directoryName: StringKeys.InterpretedLangDirectoryName,
+  },
+  {
+    language: 'Typescript',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'Java',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'C++',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'Dart',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'C Language',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'Go',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+  {
+    language: 'Ruby',
+    type: 'interpreted',
+    directoryName: StringKeys.InterpretedLangDirectoryName,
+  },
+  {
+    language: 'Rust',
+    type: 'compiled',
+    directoryName: StringKeys.CompileLangDirectoryName,
+  },
+];
