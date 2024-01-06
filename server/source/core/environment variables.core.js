@@ -48,6 +48,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `tsc -outDir ${join(StringKeys.StaticDirectoryName)} `,
     RunCommand: 'node ',
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     PackageManagerInstallCommand: 'npm install ',
   },
   {
@@ -55,13 +56,15 @@ export const LangTypesDirectory = [
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `javac -d ${join(StringKeys.StaticDirectoryName)} `,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: 'java ',
   },
   {
     language: 'C++',
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
-    CompileCommand: `g++ -o ${join(StringKeys.StaticDirectoryName)} `,
+    CompileCommand: `g++ -o ${join(StringKeys.StaticDirectoryName)}/`,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: './',
   },
   {
@@ -69,13 +72,15 @@ export const LangTypesDirectory = [
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `dart compile exe -o ${join(StringKeys.StaticDirectoryName)} `,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: './',
   },
   {
     language: 'C',
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
-    CompileCommand: `gcc -o ${join(StringKeys.StaticDirectoryName)} `,
+    CompileCommand: `gcc -o ${join(StringKeys.StaticDirectoryName)}`,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: './',
   },
   {
@@ -83,6 +88,7 @@ export const LangTypesDirectory = [
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `go build -o ${join(StringKeys.StaticDirectoryName)} `,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: './',
   },
   {
@@ -96,6 +102,7 @@ export const LangTypesDirectory = [
     type: 'compiled',
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `rustc -o ${join(StringKeys.StaticDirectoryName)} `,
+    CompiledOutputDirectory: StringKeys.StaticDirectoryName,
     RunCommand: './',
   },
 ];

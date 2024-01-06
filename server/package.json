@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint . --ext .js --fix",
     "dev": "npm test && node ./source/core/index.core.js",
     "start": "pm2 start ./source/core/index.core.js --name code-editor",
     "stop": "pm2 stop code-editor"

@@ -1,8 +1,9 @@
 import fs from 'fs'; // File System Module
 import {join} from 'path'; // Import the path module
-import PackageInstaller from './Functions/Package-Installer.js'; // Import Package Installer
+import PackageInstaller from './Functions/Package-Installer.function.controllers.js'; // Import Package Installer
 import {Response as Serve, StatusCodes} from 'outers'; // Import Response from Outers
 import {LangTypesDirectory} from '../core/environment variables.core.js'; // Environmental Variables
+import Executor from './Functions/executor.function.controllers.js'; // Import Executor
 
 // Import MongoDB
 import {MongooseModel} from '../Database/MongoDB.db.js'; // Import MongoDB
@@ -11,7 +12,6 @@ import {MongooseModel} from '../Database/MongoDB.db.js'; // Import MongoDB
 export default async function Compile(Request, Response) {
   // Write Code to Uncompiled File Directory
   const {SessionID, Language, Code, FileName, Packages, RequesterIP} = Request.body; // Destructure Request Body
-  console.log(Request.body);
 
   // Select Preferred Directory
   const PreferredLanguageDir = LangTypesDirectory.find((element) =>
@@ -19,6 +19,7 @@ export default async function Compile(Request, Response) {
 
   // Check if Preferred Directory Exists in Environmental Variables
   const FilePath = `${join(`${PreferredLanguageDir.directoryName}/${SessionID}-${FileName}`)}`; // Path of Uncompiled File
+  const PreferredFileName = `${SessionID}-${FileName}`; // File Name in Server
 
   // Find sessionID in MongoDB if it exists
   const ExistSessionID = await MongooseModel.find({sessionID: SessionID}); // Find SessionID in MongoDB
@@ -37,7 +38,7 @@ export default async function Compile(Request, Response) {
 
     // Create a mongoDB document for the SessionID if it does not exist
     const CompilerDataModel = new MongooseModel({
-      FileName: `${SessionID}-${FileName}`,
+      FileName: PreferredFileName,
       FileSize: Code.length,
       FilePath: FilePath,
       FileExtraPackages: Packages,
@@ -61,6 +62,8 @@ export default async function Compile(Request, Response) {
       });
       return; // Return if MongoDB Document was not saved
     }
+
+    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIP, Response); // Execute Code
   } else if (ExistSessionID.length > 0) {
     // Delete Previous File if Same SessionID Exists
     await fs.promises.unlink(ExistSessionID[0].FilePath); // Delete Previous File if Same SessionID Exists
@@ -71,7 +74,7 @@ export default async function Compile(Request, Response) {
 
     // Check if Any Packages are Required
     if (Packages.length > 0) {
-      // Install Packages
+    // Install Packages
       await PackageInstaller(PreferredLanguageDir, Packages); // Install Packages
     }
     // Update MongoDB Document for the SessionID if it exists
@@ -91,6 +94,8 @@ export default async function Compile(Request, Response) {
       });
       return; // Return if MongoDB Document was not updated
     }
+
+    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIP, Response); // Execute Code
   } else {
     Serve.JSON({
       response: Response,
