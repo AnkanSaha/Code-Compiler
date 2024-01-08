@@ -14,7 +14,7 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       if (InterPreteStatus.output !== '') {
         await MongooseModel.updateOne({sessionID: SessionID},
             {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIP,
-              CompilerOutputFile: `${join(`${LanguageDetails.CompiledOutputDirectory}/${FileName}`)}`}); // Update Session Status
+              CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`}); // Update Session Status
         Serve.JSON({
           response: Response,
           status: true,

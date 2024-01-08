@@ -46,7 +46,7 @@ export const LangTypesDirectory = [
     language: 'Python',
     type: 'interpreted',
     directoryName: StringKeys.InterpretedLangDirectoryName,
-    RunCommand: 'python ',
+    RunCommand: 'python3 ',
     PackageManagerInstallCommand: 'pip install',
   },
   {

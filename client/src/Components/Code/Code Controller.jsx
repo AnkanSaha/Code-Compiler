@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react"; // Import react module
 import "@css/General.css"; // General CSS
-import { APIservice } from "../../App/App_Config"; // APICalls
+import { APIservice, API_URL } from "../../App/App_Config"; // APICalls
 
 // Import Components
 import {
@@ -28,7 +28,6 @@ import AddPackageIcons from "@assets/add.jpeg"; // Add Package Icons
 // Redux
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
 import { setPackages, setOutput } from "@redux/Components/Code"; // Import setCode action
-import { setLoadingStatus, setLoadingMessage } from "@redux/Components/Status"; // Import setCode action
 
 
 export default function CodeController() {
@@ -40,7 +39,7 @@ export default function CodeController() {
 
   // State
   const [PackageName, setPackageName] = React.useState(""); // Package Name
-
+  const [PackageAction, setPackageAction] = React.useState(false); // Package Action [Add/Remove
   // On Change Functions
   const onPackageNameChange = (e) => {
     setPackageName(e.target.value);
@@ -48,6 +47,9 @@ export default function CodeController() {
 
   // Function for Add Package
   const AddPackage = () => {
+    if (Language === "Javascript"){
+      setPackageAction(true); // Set Package Action to true [Add] if Language is not JavaScript
+    }
     dispatch(setPackages(PackageName)); // Set Package Name to Redux
     onClose(); // Close Modal
     ToastMessage({
@@ -76,14 +78,14 @@ export default function CodeController() {
 
 
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-    const Response = await APIservice.Post('/api/post/compile', {
+    const Response = await APIservice.Post('/api/process/compile', {
       Language: Language,
       FileName: FileName,
       SessionID: SessionID,
       Packages: Packages,
       Code: Code,
     });
-    console.log(Response)
+ 
     if(Response.statusCode === 200){
       dispatch(setOutput(Response.data)); // Set Output to Redux
     }
@@ -94,7 +96,7 @@ export default function CodeController() {
   };
 
   // Function for Download File
-  const DownloadFile = () => {
+  const DownloadFile = async () => {
     if (SessionID === "") {
       ToastMessage({
         title: "Session ID Empty",
@@ -123,8 +125,24 @@ export default function CodeController() {
       });
       return;
     }
-    dispatch(setLoadingMessage("File will be downloaded soon..."));
-    dispatch(setLoadingStatus(true));
+
+    document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+    // Fetch the file from the server & Download it
+    const Response = await fetch(`${API_URL}/api/process/download?SessionID=${SessionID}&Language=${Language}`)
+  
+    // Create a Blob from the response
+    const blobDownloader = await Response.blob(); // Create a Blob from the response
+    const FileUrl = window.URL.createObjectURL(blobDownloader); // Create a URL for the Blob
+    const FileNameFromServer = Response.headers.get('filename'); // Get File Name from Response Headers
+    document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+    
+    // Create a temporary anchor element to trigger the download
+      const DownloadButton = document.createElement('a'); // Create a anchor tag
+      DownloadButton.href = FileUrl;
+      DownloadButton.download = FileNameFromServer;
+      document.body.appendChild(DownloadButton);
+      DownloadButton.click();
+      document.body.removeChild(DownloadButton);
   };
   return (
     <div className="fixed ml-[42.25rem] top-[5.75rem] space-x-7">
@@ -139,7 +157,7 @@ export default function CodeController() {
         </button>
       </div>
       <div className="tooltip" data-tip="Add Packages (Only for JavasScript/TypeScript)">
-        <button className="btn btn-circle btn-outline" onClick={onOpen}>
+        <button className="btn btn-circle btn-outline" onClick={onOpen} disabled = {PackageAction ? false : true}>
           <img
             src={AddPackageIcons}
             id="AddPackageIcons"
