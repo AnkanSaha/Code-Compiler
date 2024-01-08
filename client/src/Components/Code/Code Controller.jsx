@@ -129,7 +129,14 @@ export default function CodeController() {
     document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
     // Fetch the file from the server & Download it
     const Response = await fetch(`${API_URL}/api/process/download?SessionID=${SessionID}&Language=${Language}`)
-  
+    // Check if Response is 200 or not
+    if(Response.status !== 200){
+      const Data = await Response.json(); // Convert Byto to json
+      alert(Data.message); // Print Error
+      document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+      return; // End the Function
+    }
+
     // Create a Blob from the response
     const blobDownloader = await Response.blob(); // Create a Blob from the response
     const FileUrl = window.URL.createObjectURL(blobDownloader); // Create a URL for the Blob
