@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react"; // Import react module
 import "@css/General.css"; // General CSS
-import { APIservice } from "../../App/App_Config"; // APICalls
+import { APIservice, API_URL } from "../../App/App_Config"; // APICalls
 
 // Import Components
 import {
@@ -40,7 +40,7 @@ export default function CodeController() {
 
   // State
   const [PackageName, setPackageName] = React.useState(""); // Package Name
-
+  const [PackageAction, setPackageAction] = React.useState(false); // Package Action [Add/Remove
   // On Change Functions
   const onPackageNameChange = (e) => {
     setPackageName(e.target.value);
@@ -48,6 +48,9 @@ export default function CodeController() {
 
   // Function for Add Package
   const AddPackage = () => {
+    if (Language === "Javascript"){
+      setPackageAction(true); // Set Package Action to true [Add] if Language is not JavaScript
+    }
     dispatch(setPackages(PackageName)); // Set Package Name to Redux
     onClose(); // Close Modal
     ToastMessage({
@@ -83,7 +86,7 @@ export default function CodeController() {
       Packages: Packages,
       Code: Code,
     });
-    console.log(Response)
+ 
     if(Response.statusCode === 200){
       dispatch(setOutput(Response.data)); // Set Output to Redux
     }
@@ -94,7 +97,7 @@ export default function CodeController() {
   };
 
   // Function for Download File
-  const DownloadFile = () => {
+  const DownloadFile = async () => {
     if (SessionID === "") {
       ToastMessage({
         title: "Session ID Empty",
@@ -125,6 +128,18 @@ export default function CodeController() {
     }
     dispatch(setLoadingMessage("File will be downloaded soon..."));
     dispatch(setLoadingStatus(true));
+    const Response = await fetch(`${API_URL}/api/post/download`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        SessionID: SessionID,
+        Language: Language,
+      })
+    });
+    console.log(Response);
+    dispatch(setLoadingStatus(false));
   };
   return (
     <div className="fixed ml-[42.25rem] top-[5.75rem] space-x-7">
@@ -139,7 +154,7 @@ export default function CodeController() {
         </button>
       </div>
       <div className="tooltip" data-tip="Add Packages (Only for JavasScript/TypeScript)">
-        <button className="btn btn-circle btn-outline" onClick={onOpen}>
+        <button className="btn btn-circle btn-outline" onClick={onOpen} disabled = {PackageAction ? false : true}>
           <img
             src={AddPackageIcons}
             id="AddPackageIcons"
