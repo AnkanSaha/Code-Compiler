@@ -1,27 +1,27 @@
 {
-  "name": "code-editor",
+  "name": "Code-Compiler",
   "version": "1.0.3",
-  "description": "Code-Editor is a Online Code Compiler",
+  "description": "Code-Compiler is a Online Code Compiler",
   "main": "index.js",
   "scripts": {
     "test": "npm run lint",
     "lint": "eslint . --ext .js --fix",
     "dev": "npm test && node ./source/core/index.core.js",
-    "start": "pm2 start ./source/core/index.core.js --name code-editor",
-    "stop": "pm2 stop code-editor"
+    "start": "pm2 start ./source/core/index.core.js --name Code-Compiler",
+    "stop": "pm2 stop Code-Compiler"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnkanSaha/Code-Editor"
+    "url": "https://github.com/AnkanSaha/Code-Compiler"
   },
   "keywords": [
     "Code",
     "Editor",
     "Compiler",
     "Online",
-    "Code-Editor",
     "Code-Compiler",
-    "Online-Code-Editor"
+    "Code-Compiler",
+    "Online-Code-Compiler"
   ],
   "author": "Ankan Saha",
   "license": "Apache-2.0",

@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'; // imported { Provider } from 'react-red
 // Redux Store
 import Store from '@app/Redux/Store'; // imported Store from '../App/Redux/Store';
 
-ReactDOM.createRoot(document.getElementById('Code-Editor')).render(
+ReactDOM.createRoot(document.getElementById('Code-Compiler')).render(
   <React.StrictMode>
     <Provider store={Store} >
     <Global/>

@@ -12,7 +12,7 @@ export const NumberKeys = {
 
 // Export keys
 export const StringKeys = {
-  AppName: String('Code-Editor'),
+  AppName: String('Code-Compiler'),
   CORS_URL: String(process.env.ALLOWED_ORIGINS) || '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
   JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) || '10d',
@@ -29,7 +29,7 @@ export const StringKeys = {
 // Database Keys
 export const DatabaseKeys = {
   MongoDB: String(process.env.MONGODB_URI),
-  DB_Name: String(process.env.DB_NAME) || 'code-editor',
+  DB_Name: String(process.env.DB_NAME) || 'Code-Compiler',
   CollectionName: String('compiledFileRecord'),
 };
 

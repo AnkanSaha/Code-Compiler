@@ -1,0 +1,36 @@
+{
+  "index.css": {
+    "file": "assets/index-612b66d7.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/icon-152x152-72fe30b9.png",
+      "assets/compile-a71d4e29.png",
+      "assets/download-73efdbfb.png",
+      "assets/add-470ff185.jpeg"
+    ],
+    "css": [
+      "assets/index-612b66d7.css"
+    ],
+    "file": "assets/index-fd167550.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "public/icons/PWA Icons/icon-152x152.png": {
+    "file": "assets/icon-152x152-72fe30b9.png",
+    "src": "public/icons/PWA Icons/icon-152x152.png"
+  },
+  "src/assets/add.jpeg": {
+    "file": "assets/add-470ff185.jpeg",
+    "src": "src/assets/add.jpeg"
+  },
+  "src/assets/compile.png": {
+    "file": "assets/compile-a71d4e29.png",
+    "src": "src/assets/compile.png"
+  },
+  "src/assets/download.png": {
+    "file": "assets/download-73efdbfb.png",
+    "src": "src/assets/download.png"
+  }
+}

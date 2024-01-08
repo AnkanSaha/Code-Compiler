@@ -1,6 +1,6 @@
 # Client files
 client/node_modules
-client/Code-Editor
+client/Code-Compiler
 client/.cache
 
 # Server files

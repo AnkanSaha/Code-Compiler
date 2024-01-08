@@ -1,4 +1,4 @@
-# Code-Editor
+# Code-Compiler
  A Simple Online Code Editor Made with React, Node.js, Express.js, and MongoDB.
 
 ## Features
@@ -13,7 +13,7 @@
 - [x] Google Cloud
 
 ## Live Demo
-[Code-Editor](https://editor.daluabari.in/)
+[Code-Compiler](https://editor.daluabari.in/)
 
 ## Installation
 1. Clone the repository
