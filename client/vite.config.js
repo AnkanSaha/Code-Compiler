@@ -10,13 +10,13 @@ export default defineConfig({
     VitePWA({ // pwa plugin
       registerType: "autoUpdate", // auto update
       manifest: { // manifest
-        name: "Code-Editor", // name
-        short_name: "Code-Editor", // short name
+        name: "Code-Compiler", // name
+        short_name: "Code-Compiler", // short name
         theme_color: "#ffffff", // theme color
-        description: "Code-Editor is a web-based code editor that allows you to write and run your code in a web browser.", // description
+        description: "Code-Compiler is a web-based code editor that allows you to write and run your code in a web browser.", // description
         start_url: "/", // start url
         display: "standalone", // standalone
-        id: "com.code-editor", // id
+        id: "com.Code-Compiler", // id
         background_color: "#ffffff", // background color
         lang: "en-US", // en-US
         dir: "ltr", // ltr
@@ -105,7 +105,7 @@ export default defineConfig({
     force: false, // force
   },
   build: { // build
-    outDir: "Code-Editor", // out directory
+    outDir: "Code-Compiler", // out directory
     emptyOutDir: true, // empty out directory
     sourcemap: true, // sourcemap
     minify: true, // minify

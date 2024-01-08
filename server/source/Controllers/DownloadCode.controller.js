@@ -7,12 +7,11 @@ import {LangTypesDirectory} from '../core/environment variables.core.js'; // Env
 export default async function DownloadCode(Request, Response) {
   try {
     const {SessionID, Language} = Request.query; // Destructure Request Body
-    console.log(SessionID, Language); // Print SessionID and Language
+
     // Detect is this Language is Interpreted or Compiled
     const LanguageType = LangTypesDirectory.find((element) =>
       element.language.toLowerCase() === Language.toLowerCase()); // Detect Language Type
 
-    console.log(SessionID, Language, LanguageType); // Print SessionID and Language
     // Find Any Documents with the SessionID
     const SessionIDData = await MongooseModel.find({sessionID: SessionID}); // Find SessionID in MongoDB
     console.log(SessionIDData);
@@ -30,32 +29,29 @@ export default async function DownloadCode(Request, Response) {
       return; // Return if SessionID does not exist in MongoDB
     }
 
-    // Check if SessionID is Compiled or Interpreted
-    if (LanguageType.type === 'interpreted') {
-      // Download Code
-      try {
-        // Set the Content-Disposition header to force download
-        Response.setHeader('Content-Disposition', 'attachment; filename=' + SessionIDData[0].FileName); // Set Header
-        Response.setHeader('Content-Type', 'text/plain'); // Set Header to Text
-        Response.setHeader('filename', `${SessionIDData[0].FileName}`); // Set a Custom Header for FileName
-        Response.setHeader('Access-Control-Expose-Headers', 'filename'); // Set a Custom Header for FileName
-        Serve.File({
-          response: Response,
-          Filename: SessionIDData[0].FileName,
-          rootName: LanguageType.directoryName,
-          statusCode: StatusCodes.OK,
-        });
-      } catch (error) {
-        console.log(error); // Print Error
-        Serve.JSON({
-          response: Response,
-          status: false,
-          statusCode: StatusCodes.REQUEST_TIMEOUT,
-          Title: 'Unable to Download Code',
-          message: 'Unable to Download Code, please try again later or contact support',
-          data: error,
-        });
-      }
+    // Download Code
+    try {
+      // Set the Content-Disposition header to force download
+      Response.setHeader('Content-Disposition', 'attachment; filename=' + SessionIDData[0].FileName); // Set Header
+      Response.setHeader('Content-Type', 'text/plain'); // Set Header to Text
+      Response.setHeader('filename', `${SessionIDData[0].FileName}`); // Set a Custom Header for FileName
+      Response.setHeader('Access-Control-Expose-Headers', 'filename'); // Set a Custom Header for FileName
+      Serve.File({
+        response: Response,
+        Filename: SessionIDData[0].FileName,
+        rootName: LanguageType?.CompiledOutputDirectory || LanguageType.directoryName,
+        statusCode: StatusCodes.OK,
+      });
+    } catch (error) {
+      console.log(error); // Print Error
+      Serve.JSON({
+        response: Response,
+        status: false,
+        statusCode: StatusCodes.REQUEST_TIMEOUT,
+        Title: 'Unable to Download Code',
+        message: 'Unable to Download Code, please try again later or contact support',
+        data: error,
+      });
     }
   } catch (error) {
     Console.red(error); // Print When Error
