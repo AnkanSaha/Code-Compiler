@@ -12,7 +12,7 @@ import DownloadCode from '../../Controllers/DownloadCode.controller.js'; // Down
 
 // Routes
 CompileRouter.post('/compile', InputValidation, Compile); // Compile Code Route
-CompileRouter.post('/download', DownloadCode); // Download Code Route
+CompileRouter.get('/download', DownloadCode); // Download Code Route
 
 // export Compile Router
 export default CompileRouter; // Export Main Router as default

@@ -8,7 +8,7 @@ const MainRouter = Router(); // Main Router
 import CompileRouter from './Routes/CompileCode.Routes.js'; // Compile Code Router
 
 // Link All Sub Routers to Main Router
-MainRouter.use('/post', CompileRouter); // Compile Code Router
+MainRouter.use('/process', CompileRouter); // Compile Code Router
 
 // Response Not Allowed Request
 MainRouter.all('*', (Request, Response)=>{

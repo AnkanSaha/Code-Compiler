@@ -28,7 +28,6 @@ import AddPackageIcons from "@assets/add.jpeg"; // Add Package Icons
 // Redux
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
 import { setPackages, setOutput } from "@redux/Components/Code"; // Import setCode action
-import { setLoadingStatus, setLoadingMessage } from "@redux/Components/Status"; // Import setCode action
 
 
 export default function CodeController() {
@@ -79,7 +78,7 @@ export default function CodeController() {
 
 
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-    const Response = await APIservice.Post('/api/post/compile', {
+    const Response = await APIservice.Post('/api/process/compile', {
       Language: Language,
       FileName: FileName,
       SessionID: SessionID,
@@ -126,20 +125,24 @@ export default function CodeController() {
       });
       return;
     }
-    dispatch(setLoadingMessage("File will be downloaded soon..."));
-    dispatch(setLoadingStatus(true));
-    const Response = await fetch(`${API_URL}/api/post/download`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        SessionID: SessionID,
-        Language: Language,
-      })
-    });
-    console.log(Response);
-    dispatch(setLoadingStatus(false));
+
+    document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+    // Fetch the file from the server & Download it
+    const Response = await fetch(`${API_URL}/api/process/download?SessionID=${SessionID}&Language=${Language}`)
+  
+    // Create a Blob from the response
+    const blobDownloader = await Response.blob(); // Create a Blob from the response
+    const FileUrl = window.URL.createObjectURL(blobDownloader); // Create a URL for the Blob
+    const FileNameFromServer = Response.headers.get('filename'); // Get File Name from Response Headers
+    document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
+    
+    // Create a temporary anchor element to trigger the download
+      const DownloadButton = document.createElement('a'); // Create a anchor tag
+      DownloadButton.href = FileUrl;
+      DownloadButton.download = FileNameFromServer;
+      document.body.appendChild(DownloadButton);
+      DownloadButton.click();
+      document.body.removeChild(DownloadButton);
   };
   return (
     <div className="fixed ml-[42.25rem] top-[5.75rem] space-x-7">

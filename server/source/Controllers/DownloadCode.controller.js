@@ -6,7 +6,7 @@ import {LangTypesDirectory} from '../core/environment variables.core.js'; // Env
 // Main Code for Download Code Controller
 export default async function DownloadCode(Request, Response) {
   try {
-    const {SessionID, Language} = Request.body; // Destructure Request Body
+    const {SessionID, Language} = Request.query; // Destructure Request Body
     console.log(SessionID, Language); // Print SessionID and Language
     // Detect is this Language is Interpreted or Compiled
     const LanguageType = LangTypesDirectory.find((element) =>
@@ -36,11 +36,14 @@ export default async function DownloadCode(Request, Response) {
       try {
         // Set the Content-Disposition header to force download
         Response.setHeader('Content-Disposition', 'attachment; filename=' + SessionIDData[0].FileName); // Set Header
+        Response.setHeader('Content-Type', 'text/plain'); // Set Header to Text
+        Response.setHeader('filename', `${SessionIDData[0].FileName}`); // Set a Custom Header for FileName
+        Response.setHeader('Access-Control-Expose-Headers', 'filename'); // Set a Custom Header for FileName
         Serve.File({
-          statusCode: StatusCodes.OK,
           response: Response,
-          rootName: LanguageType.directoryName,
           Filename: SessionIDData[0].FileName,
+          rootName: LanguageType.directoryName,
+          statusCode: StatusCodes.OK,
         });
       } catch (error) {
         console.log(error); // Print Error
