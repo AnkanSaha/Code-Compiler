@@ -45,11 +45,18 @@ export default function CodeController() {
     setPackageName(e.target.value);
   };
 
-  // Function for Add Package
-  const AddPackage = () => {
+  // UseEffect
+  React.useEffect(() => {
     if (Language === "Javascript"){
       setPackageAction(true); // Set Package Action to true [Add] if Language is not JavaScript
     }
+    else{
+      setPackageAction(false); // Set Package Action to false [Remove] if Language is JavaScript
+    }
+  }, [Language]); // Run only when Language changes
+
+  // Function for Add Package
+  const AddPackage = () => {
     dispatch(setPackages(PackageName)); // Set Package Name to Redux
     onClose(); // Close Modal
     ToastMessage({
@@ -164,7 +171,7 @@ export default function CodeController() {
         </button>
       </div>
       <div className="tooltip" data-tip="Add Packages (Only for JavasScript/TypeScript)">
-        <button className="btn btn-circle btn-outline" onClick={onOpen} disabled = {PackageAction ? false : true}>
+        <button className="btn btn-circle btn-outline" onClick={onOpen} disabled = {PackageAction === true ? false : true}>
           <img
             src={AddPackageIcons}
             id="AddPackageIcons"
