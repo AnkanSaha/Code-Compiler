@@ -1,17 +1,13 @@
 {
 	"image": "mcr.microsoft.com/devcontainers/universal:2",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/mongosh-homebrew:1": {},
-		"ghcr.io/devcontainers-contrib/features/mysql-homebrew:1": {},
 		"ghcr.io/devcontainers-contrib/features/neofetch:1": {},
 		"ghcr.io/devcontainers-contrib/features/prisma:2": {},
 		"ghcr.io/devcontainers-contrib/features/ts-node:1": {},
 		"ghcr.io/devcontainers-contrib/features/tsx:1": {},
 		"ghcr.io/devcontainers-contrib/features/typescript:2": {},
 		"ghcr.io/joedmck/devcontainer-features/serve:1": {},
-		"ghcr.io/devcontainers-community/npm-features/typescript:1": {},
-		"ghcr.io/itsmechlark/features/postgresql:1": {},
-		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}
+		"ghcr.io/devcontainers-community/npm-features/typescript:1": {}
 	},
 	"customizations": {
 		"vscode": {
