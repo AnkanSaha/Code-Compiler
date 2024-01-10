@@ -2,12 +2,7 @@
 	"image": "mcr.microsoft.com/devcontainers/universal:2",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/neofetch:1": {},
-		"ghcr.io/devcontainers-contrib/features/prisma:2": {},
-		"ghcr.io/devcontainers-contrib/features/ts-node:1": {},
-		"ghcr.io/devcontainers-contrib/features/tsx:1": {},
-		"ghcr.io/devcontainers-contrib/features/typescript:2": {},
-		"ghcr.io/joedmck/devcontainer-features/serve:1": {},
-		"ghcr.io/devcontainers-community/npm-features/typescript:1": {}
+		"ghcr.io/joedmck/devcontainer-features/serve:1": {}
 	},
 	"customizations": {
 		"vscode": {
