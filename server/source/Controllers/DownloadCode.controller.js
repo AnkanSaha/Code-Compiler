@@ -14,7 +14,6 @@ export default async function DownloadCode(Request, Response) {
 
     // Find Any Documents with the SessionID
     const SessionIDData = await MongooseModel.find({sessionID: SessionID}); // Find SessionID in MongoDB
-    console.log(SessionIDData);
 
     // Download Code if SessionID exists in MongoDB
     if (SessionIDData.length === 0) {
@@ -35,7 +34,23 @@ export default async function DownloadCode(Request, Response) {
       Response.setHeader('Content-Disposition', 'attachment; filename=' + SessionIDData[0].FileName); // Set Header
       Response.setHeader('Content-Type', 'text/plain'); // Set Header to Text
       Response.setHeader('filename', `${SessionIDData[0].FileName}`); // Set a Custom Header for FileName
-      Response.setHeader('Access-Control-Expose-Headers', 'filename'); // Set a Custom Header for FileName
+      // Delete The Document from MongoDB before Downloading
+      const DeleteStatus = await MongooseModel.deleteOne({sessionID: SessionID}); // Delete Document from MongoDB
+
+      // Check if Document was Deleted
+      if (DeleteStatus.deletedCount === 0) {
+        Serve.JSON({
+          response: Response,
+          status: false,
+          statusCode: StatusCodes.REQUEST_TIMEOUT,
+          Title: 'Unable to Download Code',
+          message: 'Unable to Download Code, please try again later or contact support',
+          data: undefined,
+        });
+        return; // Return if Document was not Deleted
+      }
+
+      // Serve the File
       Serve.File({
         response: Response,
         Filename: SessionIDData[0].FileName,
