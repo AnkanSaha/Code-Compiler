@@ -53,12 +53,12 @@ if (cluster.isPrimary) {
   const Server = express(); // Create Express Server Instance
 
   // Enable All Proxy Settings for Server Security
-  Server.set('trust proxy', ()=>true); // Enable All Proxy Settings
+  Server.set('trust proxy', ()=> true); // Enable All Proxy Settings
 
   // Link All Router as MainRouter with all main middlewares
   Server.use('/api',
       json({limit: '999mb'}),
-      urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000}),
+      urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000, inflate: true}),
       rateLimiter, // Rate Limiter Middleware Function
       InjectIP, // Inject IP Middleware Function
       MainRouter, // Main Router
