@@ -11,7 +11,7 @@ export const NumberKeys = {
 };
 
 // Export keys
-export const StringKeys = {
+export const StringKeys = Object.freeze({
   AppName: String('Code-Compiler'),
   CORS_URL: String(process.env.ALLOWED_ORIGINS) || '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
@@ -24,14 +24,14 @@ export const StringKeys = {
   StaticDirectoryName: String('CompiledCode'),
   CompileLangDirectoryName: String('CompiledLang'),
   InterpretedLangDirectoryName: String('InterpretedLang'),
-};
+});
 
 // Database Keys
-export const DatabaseKeys = {
-  MongoDB: String(process.env.MONGODB_URI),
+export const DatabaseKeys = Object.freeze({
+  MongoDB: String(process.env.MONGODB_URL),
   DB_Name: String(process.env.DB_NAME) || 'Code-Compiler',
   CollectionName: String('compiledFileRecord'),
-};
+});
 
 // Language & Their Types & Directory Name
 export const LangTypesDirectory = [
