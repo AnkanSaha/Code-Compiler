@@ -1,13 +1,12 @@
 // Server Related Imports
 import express, {json, urlencoded} from 'express'; // Import Express
-import {Console} from 'outers'; // Import Console from outers
+import {Console, Middleware} from 'outers'; // Import Console from outers
 import cluster from 'cluster'; // Import Cluster
 import {StringKeys, NumberKeys, DatabaseKeys} from './environment variables.core.js'; // Env Variables
 import {connect} from 'mongoose'; // MongoSuper for Create Connection only
 
 // Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
-import InjectIP from '../Middleware/InjectIP.middleware.js'; // Inject IP Middleware
 
 // Import Utils
 import Creator from '../utils/directoryCreator.utils.js'; // Import Directory Creator
@@ -60,7 +59,7 @@ if (cluster.isPrimary) {
       json({limit: '999mb'}),
       urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000, inflate: true}),
       rateLimiter, // Rate Limiter Middleware Function
-      InjectIP, // Inject IP Middleware Function
+      Middleware.RequestInjectIP, // Inject IP Middleware Function
       MainRouter, // Main Router
   ); // Link Main Router
 
