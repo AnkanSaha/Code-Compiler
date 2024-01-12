@@ -4,7 +4,7 @@ import executeCommand from '../../utils/commandExecutor.utils.js'; // Import Com
 import {MongooseModel} from '../../Database/MongoDB.db.js'; // Import MongoDB Model
 import {join} from 'path'; // Import the path module
 
-export default async function Executor(FileName, LanguageDetails, SessionID, FilePath, RequesterIP, Response) {
+export default async function Executor(FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
   try {
     // Check if Code is Interpreted or Compiled
     if (LanguageDetails.type.toLowerCase() === 'interpreted') {
@@ -13,7 +13,7 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       // Check If Interpret Status is Success
       if (InterPreteStatus.output !== '') {
         await MongooseModel.updateOne({sessionID: SessionID},
-            {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIP,
+            {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress,
               CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`}); // Update Session Status
         Serve.JSON({
           response: Response,
@@ -70,7 +70,7 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       // Check If Execute Status is Success
       if (ExecuteStatus.output !== '') {
         await MongooseModel.updateOne({sessionID: SessionID},
-            {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIP}); // Update Session Status
+            {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress}); // Update Session Status
         Serve.JSON({
           response: Response,
           status: true,

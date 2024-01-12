@@ -11,7 +11,7 @@ import {MongooseModel} from '../Database/MongoDB.db.js'; // Import MongoDB
 // Main Compile Code Controller
 export default async function Compile(Request, Response) {
   // Write Code to Uncompiled File Directory
-  const {SessionID, Language, Code, FileName, Packages, RequesterIP} = Request.body; // Destructure Request Body
+  const {SessionID, Language, Code, FileName, Packages, RequesterIPaddress} = Request.body; // Destructure Request Body
 
   // Select Preferred Directory
   const PreferredLanguageDir = LangTypesDirectory.find((element) =>
@@ -44,7 +44,7 @@ export default async function Compile(Request, Response) {
       FileExtraPackages: Packages,
       sessionID: SessionID,
       LanguageName: Language,
-      BuilderIP: RequesterIP,
+      BuilderIP: RequesterIPaddress,
       BuildTime: Date.now(),
       BuildStatus: 'Pending',
     }); // Create MongoDB Document
@@ -63,7 +63,7 @@ export default async function Compile(Request, Response) {
       return; // Return if MongoDB Document was not saved
     }
 
-    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIP, Response); // Execute Code
+    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIPaddress, Response); // Execute Code
   } else if (ExistSessionID.length > 0) {
     // Delete Previous File if Same SessionID Exists
     await fs.promises.unlink(ExistSessionID[0].FilePath); // Delete Previous File if Same SessionID Exists
@@ -79,7 +79,7 @@ export default async function Compile(Request, Response) {
     }
     // Update MongoDB Document for the SessionID if it exists
     const updateStatus = await MongooseModel.updateOne({sessionID: SessionID},
-        {BuildStatus: 'Pending', BuildTime: Date.now(), BuilderIP: RequesterIP,
+        {BuildStatus: 'Pending', BuildTime: Date.now(), BuilderIP: RequesterIPaddress,
           FileSize: Code.length, FileExtraPackages: Packages}); // Update MongoDB Document for the SessionID
 
     // Check if MongoDB Document was updated
@@ -95,7 +95,7 @@ export default async function Compile(Request, Response) {
       return; // Return if MongoDB Document was not updated
     }
 
-    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIP, Response); // Execute Code
+    await Executor(PreferredFileName, PreferredLanguageDir, SessionID, FilePath, RequesterIPaddress, Response); // Execute Code
   } else {
     Serve.JSON({
       response: Response,
