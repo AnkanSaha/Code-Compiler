@@ -1,5 +1,5 @@
 import {Router} from 'express'; // Router from express
-import {StatusCodes, Response as Serve} from 'outers'; // Import Status Codes
+import {StatusCodes, Serve} from 'outers'; // Import Status Codes
 import CORS from 'cors'; // Cors Module
 import {StringKeys} from '../core/environment variables.core.js'; // Environment Variables
 
