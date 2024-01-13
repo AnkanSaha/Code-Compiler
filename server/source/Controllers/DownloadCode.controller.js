@@ -1,6 +1,6 @@
 // Import MongoDB
 import {MongooseModel} from '../Database/MongoDB.db.js'; // Import MongoDB
-import {Response as Serve, Console, StatusCodes} from 'outers'; // Response
+import {Serve, Console, StatusCodes} from 'outers'; // Response
 import {LangTypesDirectory} from '../core/environment variables.core.js'; // Environmental Variables
 
 // Main Code for Download Code Controller
