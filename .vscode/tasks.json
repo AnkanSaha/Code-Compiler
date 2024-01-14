@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "server",
+			"problemMatcher": [],
+			"label": "npm: dev - server",
+			"detail": "npm test && node ./source/core/index.core.js"
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "client",
+			"problemMatcher": [],
+			"label": "npm: dev - client",
+			"detail": "npm run lint && vite --host"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "client",
+			"problemMatcher": [],
+			"label": "npm: build - client",
+			"detail": "npm run lint && vite build"
+		}
+	]
+}
