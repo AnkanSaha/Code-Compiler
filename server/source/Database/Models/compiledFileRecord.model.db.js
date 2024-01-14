@@ -1,5 +1,5 @@
 export default {
-  FileName: {type: String, required: true, unique: true, index: true, lowercase: true},
+  FileName: {type: String, required: true, unique: true, index: true},
   FileSize: {type: Number, required: true, index: false, min: 0},
   FilePath: {type: String, required: true, index: false},
   CompilerOutputFile: {type: String, required: false, index: false, default: ''},
