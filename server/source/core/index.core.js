@@ -63,8 +63,6 @@ if (cluster.isPrimary) {
       MainRouter, // Main Router
   ); // Link Main Router
 
-  Console.magenta(`Linked All API Endpoints with ${StringKeys.AppName} Server`); // Print Success Message for Router Linking
-
   // Configure Static Folders
   Server.use(express.static(StringKeys.StaticDirectoryName)); // Configure Static Folder
   Server.use(express.static(StringKeys.InterpretedLangDirectoryName)); // Configure Static Folder
