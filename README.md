@@ -1,4 +1,7 @@
 # Code-Compiler
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/710813650d38458cbeb12fe00f8a9b40)](https://app.codacy.com/gh/AnkanSaha/Code-Compiler?utm_source=github.com&utm_medium=referral&utm_content=AnkanSaha/Code-Compiler&utm_campaign=Badge_Grade)
+
  A Simple Online Code Editor Made with React, Node.js, Express.js, and MongoDB. The Code is Compiled and Executed on the Server Side. The Output is then Sent Back to the Client. The Client is also able to Download the Code which is Compiled and Executed on the Server Side.
 
 ## Features
