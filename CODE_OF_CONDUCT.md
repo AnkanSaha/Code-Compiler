@@ -1,5 +1,4 @@
 # Code Compiler Code of Conduct
-
 Welcome to Code Compiler, a React-based payment network built using MERN technology. Our platform enables users to load balance, withdraw funds, and make payments to their family members. In order to create a safe and inclusive environment, we have established this Code of Conduct for all participants.
  
  ## 1. Inclusivity and Respect
