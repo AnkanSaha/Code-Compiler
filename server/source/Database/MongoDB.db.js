@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'; // Mongoose for Schema and Models only
-import { DatabaseKeys } from '../core/environment variables.core.js'; // Env Variables
+import {DatabaseKeys} from '../core/environment variables.core.js'; // Env Variables
 
 // Import Models
 import compiledFileRecordModelDb from './Models/compiledFileRecord.model.db.js'; // Compiled File Record Model
