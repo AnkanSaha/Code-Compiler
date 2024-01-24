@@ -9,7 +9,7 @@ import {
   setCode,
   setSessionID,
   setFileName,
-  setPackages
+  setPackages,
 } from "@redux/Components/Code"; // Import setCode action
 
 // Import Components
@@ -69,7 +69,7 @@ export default function CodeEnterSide() {
     onOpen(); // Open Modal
     dispatch(setFileName("")); // Set FileName to empty
     const matchedElement = CodeSnippet.find(
-      (element) => element.Language === language
+      (element) => element.Language === language,
     );
 
     if (matchedElement) {
@@ -97,10 +97,12 @@ export default function CodeEnterSide() {
 
   // On Submit Event Listener
   const SetFileNameInRedux = () => {
-    const LanguageDetails= CodeSnippet.find((item) => item.Language === language); // Get Language Details
+    const LanguageDetails = CodeSnippet.find(
+      (item) => item.Language === language,
+    ); // Get Language Details
 
     // Check if FileName includes extension
-    if(FileName.includes(LanguageDetails.Extension)){
+    if (FileName.includes(LanguageDetails.Extension)) {
       ToastMessage({
         title: "Do not include extension",
         description: "Do not include extension in file name",
@@ -135,7 +137,7 @@ export default function CodeEnterSide() {
           autoCapitalize="off"
           autoCorrect="off"
           spellCheck="false"
-        ></textarea>
+        />
       </div>
       {/* Add Packages Modal */}
       <Modal isOpen={isOpen} onClose={onClose}>
