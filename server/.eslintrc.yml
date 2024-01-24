@@ -6,7 +6,7 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules: {
-  'max-len': ['error', { 'code': 130 }],
+  'max-len': ['error', { 'code': 180 }],
   'object-curly-spacing': ['error', 'never'],
   'valid-jsdoc': 'off',
   'require-jsdoc': 'off',
