@@ -103,7 +103,7 @@ export default function CodeEnterSide() {
     if(FileName.includes(LanguageDetails.Extension)){
       ToastMessage({
         title: "Do not include extension",
-        description: `Do not include extension in file name`,
+        description: "Do not include extension in file name",
         status: "error",
         duration: 5000,
         isClosable: true,

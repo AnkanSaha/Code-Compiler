@@ -1,12 +1,12 @@
 export const CodeSnippet = [
     {
         Language: "Javascript",
-        Code: `console.log("Hello Javascript");`,
+        Code: 'console.log("Hello Javascript");',
         Extension: ".js"
     },
     {
         Language: "Python",
-        Code: `print("Hello Python")`,
+        Code: 'print("Hello Python")',
         Extension: ".py"
     },
     {
@@ -55,7 +55,7 @@ export const CodeSnippet = [
     },
     {
         Language: "Ruby",
-        Code: `puts "Hello Ruby"`,
+        Code: 'puts "Hello Ruby"',
         Extension: ".rb"
     },
     {
