@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"; // useSelector
 import { setSideBarToggleStatus } from "@redux/Components/SideBar"; // Redux Action
 
 // Import Data
-import {SideBarLangNameData} from '@app/Data/Sidebar Data'; // SideBarLangNameData
+import { SideBarLangNameData } from "@app/Data/Sidebar Data"; // SideBarLangNameData
 
 export default function SideBar() {
   // Hooks
@@ -19,9 +19,7 @@ export default function SideBar() {
 
   // Redux
   const Updater = useDispatch(); // Redux Updater
-  const isSideBarOpen = useSelector(
-    (state) => state.SideBarToggle
-  ); // Redux Selector
+  const isSideBarOpen = useSelector((state) => state.SideBarToggle); // Redux Selector
 
   const SideBarToggle = (event) => {
     if (isSideBarOpen) {
@@ -41,7 +39,7 @@ export default function SideBar() {
           className="drawer-toggle"
         />
         <div className="drawer-side">
-          <label htmlFor="my-drawer" className="drawer-overlay"></label>
+          <label htmlFor="my-drawer" className="drawer-overlay" />
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content pt-16">
             {SideBarLangNameData.map((item, index) => {
               return (

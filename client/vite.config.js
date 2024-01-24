@@ -7,13 +7,16 @@ object specifies various settings and options for the build process. */
 export default defineConfig({
   plugins: [
     react(), // react-swc plugin
-    VitePWA({ // pwa plugin
+    VitePWA({
+      // pwa plugin
       registerType: "autoUpdate", // auto update
-      manifest: { // manifest
+      manifest: {
+        // manifest
         name: "Code-Compiler", // name
         short_name: "Code-Compiler", // short name
         theme_color: "#ffffff", // theme color
-        description: "Code-Compiler is a web-based code editor that allows you to write and run your code in a web browser.", // description
+        description:
+          "Code-Compiler is a web-based code editor that allows you to write and run your code in a web browser.", // description
         start_url: "/", // start url
         display: "standalone", // standalone
         id: "com.Code-Compiler", // id
@@ -22,7 +25,8 @@ export default defineConfig({
         dir: "ltr", // ltr
         orientation: "any", // any orientation
         prefer_related_applications: true, // prefer related applications
-        icons: [ // icons
+        icons: [
+          // icons
           {
             src: "/icons/PWA Icons/icon-192x192.png",
             sizes: "192x192",
@@ -87,14 +91,16 @@ export default defineConfig({
   mode: "production", // mode
   ssr: true, // ssr mode
   worker: true, // worker mode
-  experimental: { // experimental mode
+  experimental: {
+    // experimental mode
     cssVarsInjection: false, // css vars injection
     cssStaticVarInjection: true, // css static var injection
     optimizeDeps: true, // optimize deps
     hmrPartialAccept: true, // hmr partial accept
   },
   publicDir: "public", // public directory
-  preview: { // preview
+  preview: {
+    // preview
     cors: true, // cors
     port: 3000, // port
     strictPort: true, // strict port
@@ -104,7 +110,8 @@ export default defineConfig({
     host: "localhost", // host
     force: false, // force
   },
-  build: { // build
+  build: {
+    // build
     outDir: "Code-Compiler", // out directory
     emptyOutDir: true, // empty out directory
     sourcemap: true, // sourcemap
@@ -123,7 +130,8 @@ export default defineConfig({
     write: true, // write
     assetsInlineLimit: 5128, // assets inline limit
   },
-  server: { // server
+  server: {
+    // server
     port: 5173, // port
     strictPort: true, // strict port
     open: true, // open
@@ -133,8 +141,10 @@ export default defineConfig({
     host: "localhost", // host
     force: false, // force
   },
-  resolve: { // resolve
-    alias: { // alias
+  resolve: {
+    // resolve
+    alias: {
+      // alias
       "@src": "/src", // src alias
       "@public": "/public", // public alias
       "@app": "/src/App", // app alias
@@ -149,7 +159,8 @@ export default defineConfig({
       "@assets": "/src/assets", // assets alias
     },
   },
-  optimizeDeps: { // optimize deps
+  optimizeDeps: {
+    // optimize deps
     include: ["react", "react-dom", "react-router-dom"], // include deps
   },
 });

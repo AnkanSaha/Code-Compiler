@@ -27,7 +27,7 @@ import { useSelector } from "react-redux"; // Import useSelector hook
 export default function Global() {
   // Hooks
   const { LoadingStatus, InternetStatus } = useSelector(
-    (state) => state.status
+    (state) => state.status,
   ); // Get Loading Status from Redux
   Update_InternetStatus(); // Update Internet Status
   return (

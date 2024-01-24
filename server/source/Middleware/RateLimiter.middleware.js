@@ -1,5 +1,5 @@
 import rateLimiter from 'express-rate-limit'; // Express Rate Limiter
-import {StatusCodes} from 'outers'; // Import Status Codes
+import { StatusCodes } from 'outers'; // Import Status Codes
 
 // Rate Limiter Middleware Function
 export default rateLimiter({

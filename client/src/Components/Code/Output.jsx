@@ -16,11 +16,11 @@ export default function Output() {
   const Output = useSelector((state) => state.Code.Output); // Get Output from Redux
   const dispatch = useDispatch(); // Get dispatch from useDispatch hook
 
- // References
- const OutputRef = React.useRef(null); // Set InitialCodeSnippetRef to null
+  // References
+  const OutputRef = React.useRef(null); // Set InitialCodeSnippetRef to null
 
-   // Effects for InitialCodeSnippet animation
-   React.useEffect(() => {
+  // Effects for InitialCodeSnippet animation
+  React.useEffect(() => {
     const typed = new Typed(OutputRef.current, {
       strings: [Output],
       typeSpeed: 10,
@@ -43,13 +43,12 @@ export default function Output() {
     <div>
       <textarea
         rows="15"
-        disabled={true}
+        disabled
         cols="48"
         className="textarea textarea-bordered top-[9rem] ml-[57.25rem] fixed"
         placeholder="Output will be shown here"
         ref={OutputRef}
-        // value={Output}
-      ></textarea>
+      />
     </div>
   );
 }

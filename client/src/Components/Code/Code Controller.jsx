@@ -29,11 +29,12 @@ import AddPackageIcons from "@assets/add.jpeg"; // Add Package Icons
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch hook
 import { setPackages, setOutput } from "@redux/Components/Code"; // Import setCode action
 
-
 export default function CodeController() {
   // hooks
   const dispatch = useDispatch(); // Get dispatch from useDispatch hook
-  const { Language, FileName, SessionID, Packages, Code } = useSelector((state) => state.Code); // Get code from Redux
+  const { Language, FileName, SessionID, Packages, Code } = useSelector(
+    (state) => state.Code,
+  ); // Get code from Redux
   const { isOpen, onOpen, onClose } = useDisclosure(); // Get isOpen, onOpen, onClose from useDisclosure hook
   const ToastMessage = useToast(); // Get toast from useToast hook
 
@@ -47,10 +48,9 @@ export default function CodeController() {
 
   // UseEffect
   React.useEffect(() => {
-    if (Language === "Javascript"){
+    if (Language === "Javascript") {
       setPackageAction(true); // Set Package Action to true [Add] if Language is not JavaScript
-    }
-    else{
+    } else {
       setPackageAction(false); // Set Package Action to false [Remove] if Language is JavaScript
     }
   }, [Language]); // Run only when Language changes
@@ -83,20 +83,18 @@ export default function CodeController() {
       return;
     }
 
-
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-    const Response = await APIservice.Post('/api/process/compile', {
-      Language: Language,
-      FileName: FileName,
-      SessionID: SessionID,
-      Packages: Packages,
-      Code: Code,
+    const Response = await APIservice.Post("/api/process/compile", {
+      Language,
+      FileName,
+      SessionID,
+      Packages,
+      Code,
     });
- 
-    if(Response.statusCode === 200){
+
+    if (Response.statusCode === 200) {
       dispatch(setOutput(Response.data)); // Set Output to Redux
-    }
-    else {
+    } else {
       dispatch(setOutput(Response.data.stderr)); // Set Output to Redux
     }
     document.getElementById("CompileIcons").classList.toggle("RotateButton"); // Rotate Button Icon
@@ -135,9 +133,11 @@ export default function CodeController() {
 
     document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
     // Fetch the file from the server & Download it
-    const Response = await fetch(`${API_URL}/api/process/download?SessionID=${SessionID}&Language=${Language}`)
+    const Response = await fetch(
+      `${API_URL}/api/process/download?SessionID=${SessionID}&Language=${Language}`,
+    );
     // Check if Response is 200 or not
-    if(Response.status !== 200){
+    if (Response.status !== 200) {
       const Data = await Response.json(); // Convert Byto to json
       alert(Data.message); // Print Error
       document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
@@ -147,16 +147,16 @@ export default function CodeController() {
     // Create a Blob from the response
     const blobDownloader = await Response.blob(); // Create a Blob from the response
     const FileUrl = window.URL.createObjectURL(blobDownloader); // Create a URL for the Blob
-    const FileNameFromServer = Response.headers.get('filename'); // Get File Name from Response Headers
+    const FileNameFromServer = Response.headers.get("filename"); // Get File Name from Response Headers
     document.getElementById("DownloadIcons").classList.toggle("RotateButton"); // Rotate Button Icon
-    
+
     // Create a temporary anchor element to trigger the download
-      const DownloadButton = document.createElement('a'); // Create a anchor tag
-      DownloadButton.href = FileUrl;
-      DownloadButton.download = FileNameFromServer;
-      document.body.appendChild(DownloadButton);
-      DownloadButton.click();
-      document.body.removeChild(DownloadButton);
+    const DownloadButton = document.createElement("a"); // Create a anchor tag
+    DownloadButton.href = FileUrl;
+    DownloadButton.download = FileNameFromServer;
+    document.body.appendChild(DownloadButton);
+    DownloadButton.click();
+    document.body.removeChild(DownloadButton);
   };
   return (
     <div className="fixed ml-[42.25rem] top-[5.75rem] space-x-7">
@@ -170,8 +170,15 @@ export default function CodeController() {
           />
         </button>
       </div>
-      <div className="tooltip" data-tip="Add Packages (Only for JavasScript/TypeScript)">
-        <button className="btn btn-circle btn-outline" onClick={onOpen} disabled = {PackageAction === true ? false : true}>
+      <div
+        className="tooltip"
+        data-tip="Add Packages (Only for JavasScript/TypeScript)"
+      >
+        <button
+          className="btn btn-circle btn-outline"
+          onClick={onOpen}
+          disabled={PackageAction !== true}
+        >
           <img
             src={AddPackageIcons}
             id="AddPackageIcons"
