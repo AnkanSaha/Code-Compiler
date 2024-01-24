@@ -3,12 +3,14 @@
 import React from "react"; // imported React from 'react';
 
 // Import App Info
-import {AppName} from '@app/App_Config'; // App Info
+import { AppName } from "@app/App_Config"; // App Info
 
-export default function Footer({FooterStyle}) {
+export default function Footer({ FooterStyle }) {
   return (
     <>
-      <footer className={`footer footer-center p-4 bg-base-300 text-base-content bottom-0 ${FooterStyle}`}>
+      <footer
+        className={`footer footer-center p-4 bg-base-300 text-base-content bottom-0 ${FooterStyle}`}
+      >
         <aside>
           <p>Copyright © 2023 - All right reserved by {AppName}</p>
         </aside>
@@ -17,5 +19,5 @@ export default function Footer({FooterStyle}) {
   );
 }
 Footer.defaultProps = {
-  FooterStyle: "fixed"
+  FooterStyle: "fixed",
 }; // Default Props

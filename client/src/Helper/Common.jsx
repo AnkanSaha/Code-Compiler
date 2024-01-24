@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux"; // import useDispatch hook from react-redux
 
 // Import All Actions
-import { setInternetStatus, setLoadingMessage } from "@redux/Components/Status"; // Import setInternetStatus Action
+import { setInternetStatus, setLoadingMessage } from "@redux/Components/Status";
+
+// Import APP Name
+import { AppName } from "@app/App_Config"; // Import setInternetStatus Action
 
 export function Update_InternetStatus() {
   const Updater = useDispatch(); // initialize the useDispatch hook
@@ -17,9 +20,6 @@ export function Update_InternetStatus() {
   });
 }
 
-// Import APP Name
-import {AppName} from '@app/App_Config'
-
-export function Update_Document_Title (Title){
+export function Update_Document_Title(Title) {
   document.title = `${Title} - ${AppName}`;
 }

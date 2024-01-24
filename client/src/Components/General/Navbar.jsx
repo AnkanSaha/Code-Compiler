@@ -19,7 +19,7 @@ import { setSideBarToggleStatus } from "@redux/Components/SideBar"; // Redux Act
 
 import { useParams } from "react-router-dom"; // useParams Hook
 
-export default function Navbar({NavbarTitle}) {
+export default function Navbar({ NavbarTitle }) {
   // Hooks
   const Updater = useDispatch(); // Redux Updater
   const { language } = useParams(); // useParams Hook
@@ -33,15 +33,15 @@ export default function Navbar({NavbarTitle}) {
           }}
           leftIcon={<GiHamburgerMenu />}
           colorScheme="facebook"
-          size={"md"}
-          iconSpacing={"-0.5"}
-        ></Button>
+          size="md"
+          iconSpacing="-0.5"
+        />
         <Link to="/" className="flex items-center">
           <img src={Logo} className="h-8 mr-3" alt="MainLogo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            {
-              language === undefined ? `${NavbarTitle} - ${AppName}` : `${language} - Code Editor`
-            }
+            {language === undefined
+              ? `${NavbarTitle} - ${AppName}`
+              : `${language} - Code Editor`}
           </span>
         </Link>
         <button
@@ -83,16 +83,18 @@ export default function Navbar({NavbarTitle}) {
               <a
                 href="https://github.com/AnkanSaha/Code-Compiler"
                 target="_blank"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" rel="noreferrer"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                rel="noreferrer"
               >
-               Get Source Code
+                Get Source Code
               </a>
             </li>
             <li>
               <a
                 href="https://www.postman.com/"
                 target="_blank"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" rel="noreferrer"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                rel="noreferrer"
               >
                 Use Postman
               </a>
@@ -105,5 +107,5 @@ export default function Navbar({NavbarTitle}) {
 }
 
 Navbar.defaultProps = {
-  NavbarTitle: "Home"
+  NavbarTitle: "Home",
 };

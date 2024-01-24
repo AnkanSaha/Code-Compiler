@@ -1,4 +1,4 @@
-import {Console} from 'outers'; // Import Console from Outers
+import { Console } from 'outers'; // Import Console from Outers
 import Executor from '../../utils/commandExecutor.utils.js'; // Import Command Executor
 
 // Installer of Packages for Codes

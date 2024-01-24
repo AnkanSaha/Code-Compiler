@@ -1,9 +1,9 @@
 // Server Related Imports
-import express, {json, urlencoded} from 'express'; // Import Express
-import {Console, Middleware} from 'outers'; // Import Console from outers
+import express, { json, urlencoded } from 'express'; // Import Express
+import { Console, Middleware } from 'outers'; // Import Console from outers
 import cluster from 'cluster'; // Import Cluster
-import {StringKeys, NumberKeys, DatabaseKeys} from './environment variables.core.js'; // Env Variables
-import {connect} from 'mongoose'; // MongoSuper for Create Connection only
+import { StringKeys, NumberKeys, DatabaseKeys } from './environment variables.core.js'; // Env Variables
+import { connect } from 'mongoose'; // MongoSuper for Create Connection only
 
 // Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js'; // Express Rate Limiter
@@ -22,7 +22,7 @@ let ProcessCopy = NumberKeys.CPUCount; // Copy CPU Count
 if (cluster.isPrimary) {
   // Print CPU Count
   Console.bright(
-      `${NumberKeys.CPUCount} CPU(s) detected With
+    `${NumberKeys.CPUCount} CPU(s) detected With
        ${StringKeys.Platform} ${StringKeys.Architecture} server : ${StringKeys.FreeRam} GB Free Ram : ${StringKeys.Model}`,
   );
 
@@ -52,24 +52,24 @@ if (cluster.isPrimary) {
   const Server = express(); // Create Express Server Instance
 
   // Enable All Proxy Settings for Server Security
-  Server.set('trust proxy', ()=> true); // Enable All Proxy Settings
+  Server.set('trust proxy', () => true); // Enable All Proxy Settings
 
   // Create a new URL object of Allowed URL
   const AllowedURLobject = new URL(StringKeys.CORS_URL); // Create a new URL object of Allowed URL
   // Link All Router as MainRouter with all main middlewares
-  Server.use('/api',
-      json({limit: '999mb'}),
-      Middleware.AccessController([AllowedURLobject.hostname]),
-      urlencoded({extended: true, limit: 5000000 * 1000, parameterLimit: 5000, inflate: true}),
-      rateLimiter, // Rate Limiter Middleware Function
-      Middleware.RequestInjectIP, // Inject IP Middleware Function
-      MainRouter, // Main Router
+  Server.use(
+    '/api',
+    json({ limit: '999mb' }),
+    Middleware.AccessController([AllowedURLobject.hostname]),
+    urlencoded({ extended: true, limit: 5000000 * 1000, parameterLimit: 5000, inflate: true }),
+    rateLimiter, // Rate Limiter Middleware Function
+    Middleware.RequestInjectIP, // Inject IP Middleware Function
+    MainRouter, // Main Router
   ); // Link Main Router
 
   // Configure Static Folders
   Server.use(express.static(StringKeys.StaticDirectoryName)); // Configure Static Folder
   Server.use(express.static(StringKeys.InterpretedLangDirectoryName)); // Configure Static Folder
-
 
   // Create Directory
   Creator(); // Create Directory for Uncompiled Code

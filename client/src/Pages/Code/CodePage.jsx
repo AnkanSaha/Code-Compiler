@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react"; // Import react module
-import  {useParams} from "react-router-dom"; // Import useParams hook
+import { useParams } from "react-router-dom"; // Import useParams hook
 
 // Import Components
 import Sidebar from "@component/General/SideBar"; // Sidebar
@@ -11,11 +11,11 @@ import CodeController from "@component/Code/Code Controller"; // Code Controller
 import Output from "../../Components/Code/Output"; // Output
 
 // Import Function
-import {Update_Document_Title} from '@helper/Common'; // Common Functions
+import { Update_Document_Title } from "@helper/Common"; // Common Functions
 
 export default function CodePage() {
   // Hooks
-  const {language} = useParams(); // Get language from URL
+  const { language } = useParams(); // Get language from URL
   Update_Document_Title(`${language} Code`); // Update Document Titles
   return (
     <>

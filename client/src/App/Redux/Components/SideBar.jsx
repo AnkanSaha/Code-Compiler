@@ -1,17 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
-import {createSlice} from '@reduxjs/toolkit'; // 1. import combineReducers
+import { createSlice } from "@reduxjs/toolkit"; // 1. import combineReducers
 
 const SideBarToggleStatusSlice = createSlice({
-    name: 'SideBarToggleStatus',
-    initialState: true,
+  name: "SideBarToggleStatus",
+  initialState: true,
 
-    reducers: {
-        setSideBarToggleStatus: (state, action) => {
-            return action.payload;
-        },
+  reducers: {
+    setSideBarToggleStatus: (state, action) => {
+      return action.payload;
     },
+  },
 });
 
-
-export const {setSideBarToggleStatus} = SideBarToggleStatusSlice.actions; // Export the Action
+export const { setSideBarToggleStatus } = SideBarToggleStatusSlice.actions; // Export the Action
 export default SideBarToggleStatusSlice.reducer; // 2. export default Store

@@ -1,10 +1,10 @@
 import util from 'util'; // Node.js utility module
-import {exec} from 'child_process'; // Import exec from child_process
+import { exec } from 'child_process'; // Import exec from child_process
 const executor = util.promisify(exec); // Promisify exec
 
 export default async function executeCommand(command) {
   try {
-    const {stdout, stderr} = await executor(command); // Execute Command
+    const { stdout, stderr } = await executor(command); // Execute Command
     return {
       output: stdout,
       error: stderr,
@@ -13,7 +13,7 @@ export default async function executeCommand(command) {
     console.error('Error executing command:', error);
     return {
       output: '',
-      error: error,
+      error,
     };
   }
 }
