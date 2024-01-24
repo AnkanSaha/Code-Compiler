@@ -1,18 +1,18 @@
 // Import MongoDB
-import {MongooseModel} from '../Database/MongoDB.db.js'; // Import MongoDB
-import {Serve, Console, StatusCodes} from 'outers'; // Response
-import {LangTypesDirectory} from '../core/environment variables.core.js'; // Environmental Variables
+import { MongooseModel } from '../Database/MongoDB.db.js'; // Import MongoDB
+import { Serve, Console, StatusCodes } from 'outers'; // Response
+import { LangTypesDirectory } from '../core/environment variables.core.js'; // Environmental Variables
 
 // Main Code for Download Code Controller
 export default async function DownloadCode(Request, Response) {
   try {
-    const {SessionID, Language} = Request.query; // Destructure Request Body
+    const { SessionID, Language } = Request.query; // Destructure Request Body
 
     // Detect is this Language is Interpreted or Compiled
     const LanguageType = LangTypesDirectory.find((element) => element.language.toLowerCase() === Language.toLowerCase()); // Detect Language Type
 
     // Find Any Documents with the SessionID
-    const SessionIDData = await MongooseModel.find({sessionID: SessionID}); // Find SessionID in MongoDB
+    const SessionIDData = await MongooseModel.find({ sessionID: SessionID }); // Find SessionID in MongoDB
 
     // Download Code if SessionID exists in MongoDB
     if (SessionIDData.length === 0) {
