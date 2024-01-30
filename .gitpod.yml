@@ -35,7 +35,6 @@ tasks:
       docker pull redis:latest
 
   - command: docker run -d -p 27017:27017 --name MongoDB mongodb/mongodb-community-server
-
   - command: docker run -d -p 6379:6379 --name Redis redis
 
 # Expose PORTS
