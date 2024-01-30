@@ -29,6 +29,8 @@ tasks:
       cd client && \
       npm install --force && \
       npm run build && \
+      cd ../server && \
+      npm install --force && \
       docker pull mongodb/mongodb-community-server:latest && \
       docker pull redis:latest
 
