@@ -1,7 +1,7 @@
-import { Router } from 'express'; // Main Router
+import {Router} from 'express'; // Main Router
 
 // Import Middlewares
-import { InputValidation } from '../../Middleware/CompileCode.Validator.middleware.js'; // Input Validation Middleware
+import {InputValidation} from '../../Middleware/CompileCode.Validator.middleware.js'; // Input Validation Middleware
 
 // import Controllers
 import Compile from '../../Controllers/CompileCode.controller.js'; // Compile Code Controller

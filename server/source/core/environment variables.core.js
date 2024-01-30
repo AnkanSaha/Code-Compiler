@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import dotenv from 'dotenv'; // https://www.npmjs.com/package/dotenv
-import { join } from 'path'; // Initialize dotenv
-import { cpus, platform, freemem, arch } from 'os'; // Import Path
+import {join} from 'path'; // Initialize dotenv
+import {cpus, platform, freemem, arch} from 'os'; // Import Path
 dotenv.config(); // Import OS
 
 // Number Keys
 export const NumberKeys = {
   PORT: Number(process.env.PORT) || 4896, // Port
-  CPUCount: cpus().length * Number(process.env.CPU_COUNT_MULTIPLIERenv) || 2, // CPU Count
+  CPUCount: cpus().length * Number(process.env.CPU_COUNT_MULTIPLIERENV) || 2, // CPU Count
 };
 
 // Export keys
