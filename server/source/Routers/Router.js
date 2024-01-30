@@ -1,13 +1,13 @@
-import { Router } from 'express'; // Router from express
-import { StatusCodes, Serve } from 'outers'; // Import Status Codes
-import CORS from 'cors'; // Cors Module
-import { StringKeys } from '../core/environment variables.core.js'; // CORS Config
+import { Router } from 'express' // Router from express
+import { StatusCodes, Serve } from 'outers' // Import Status Codes
+import CORS from 'cors' // Cors Module
+import { StringKeys } from '../core/environment variables.core.js' // CORS Config
 
 // import All Sub Routers
-import CompileRouter from './Routes/CompileCode.Routes.js'; // Environment Variables
+import CompileRouter from './Routes/CompileCode.Routes.js' // Environment Variables
 
 // setup Router
-const MainRouter = Router(); // Main Router
+const MainRouter = Router() // Main Router
 
 // Setup Cors Config
 MainRouter.use(
@@ -19,12 +19,12 @@ MainRouter.use(
     maxAge: 86400, // 1 Day
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow Only These Methods
     optionsSuccessStatus: StatusCodes.CONTINUE, // Set Status Code for OPTIONS Request
-    preflightContinue: true, // Continue if OPTIONS Request
-  }),
-); // Compile Code Router
+    preflightContinue: true // Continue if OPTIONS Request
+  })
+) // Compile Code Router
 
 // Link All Sub Routers to Main Router
-MainRouter.use('/process', CompileRouter); // Compile Code Router
+MainRouter.use('/process', CompileRouter) // Compile Code Router
 
 // Response Not Allowed Request
 MainRouter.all('*', (Request, Response) => {
@@ -38,10 +38,10 @@ MainRouter.all('*', (Request, Response) => {
       requestedUrl: Request.url,
       requestedMethod: Request.method,
       requestedBody: Request.body,
-      requestedHeaders: Request.headers,
-    },
-  }); // Response Not Allowed Request
-}); // Not Allowed Request
+      requestedHeaders: Request.headers
+    }
+  }) // Response Not Allowed Request
+}) // Not Allowed Request
 
 // Export Main Router
-export default MainRouter; // Export Main Router as default
+export default MainRouter // Export Main Router as default
