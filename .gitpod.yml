@@ -26,10 +26,7 @@ vscode:
 tasks:
   - name: First Time Setup
     init: |
-      cd server && \
-      npm install --force && \
-      npm run build && \
-      cd ../client && \
+      cd client && \
       npm install --force && \
       npm run build && \
       docker pull mongodb/mongodb-community-server:latest && \
