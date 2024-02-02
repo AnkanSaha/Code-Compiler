@@ -16,6 +16,7 @@ export const StringKeys = Object.freeze({
   CORS_URL: String(process.env.ALLOWED_ORIGINS) || '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
   JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) || '10d',
+  IPINFO_API_KEY: String(process.env.IPINFO_API_KEY) ?? String(process.env.VITE_IP_INFO_API_KEY) ?? undefined,
   // Server Details
   Platform: String(platform()),
   Architecture: String(arch()),
