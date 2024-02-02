@@ -1,4 +1,4 @@
-import {Serve, StatusCodes} from 'outers'; // Import all the required modules
+import { Serve, StatusCodes } from 'outers' // Import all the required modules
 
 // Input Validation
 export const InputValidation = (Request, Response, Next) => {
@@ -9,8 +9,8 @@ export const InputValidation = (Request, Response, Next) => {
       Title: 'Input Validation Error',
       status: false,
       statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined,
-    });
+      data: undefined
+    })
   }
 
   if (!Request.body.Language) {
@@ -20,8 +20,8 @@ export const InputValidation = (Request, Response, Next) => {
       Title: 'Input Validation Error',
       status: false,
       statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined,
-    });
+      data: undefined
+    })
   }
 
   if (!Request.body.FileName) {
@@ -31,8 +31,8 @@ export const InputValidation = (Request, Response, Next) => {
       Title: ' File Name Validation Error',
       status: false,
       statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined,
-    });
+      data: undefined
+    })
   }
 
   if (!Request.body.SessionID) {
@@ -42,9 +42,9 @@ export const InputValidation = (Request, Response, Next) => {
       Title: 'Session ID Validation Error',
       status: false,
       statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined,
-    });
+      data: undefined
+    })
   }
 
-  Next(); // Call Next Middleware Function  if all the above conditions are satisfied
-};
+  Next() // Call Next Middleware Function  if all the above conditions are satisfied
+}
