@@ -31,7 +31,6 @@ export default async function DownloadCode (Request, Response) {
     try {
       // Set the Content-Disposition header to force download
       Response.setHeader('Content-Disposition', 'attachment; filename=' + SessionIDData[0].FileName) // Set Header
-      Response.setHeader('Content-Type', 'text/plain') // Set Header to Text
       Response.setHeader('filename', `${SessionIDData[0].FileName}`) // Set a Custom Header for FileName
 
       // Delete The Document from MongoDB before Downloading
@@ -42,7 +41,8 @@ export default async function DownloadCode (Request, Response) {
         response: Response,
         Filename: SessionIDData[0].FileName,
         rootName: LanguageType?.CompiledOutputDirectory || LanguageType.directoryName,
-        statusCode: StatusCodes.OK
+        statusCode: StatusCodes.OK,
+        contentType: 'text/plain'
       })
     } catch (error) {
       console.log(error) // Print Error

@@ -56,6 +56,7 @@ if (cluster.isPrimary) {
 
   // Create a new URL object of Allowed URL
   const AllowedURLobject = new URL(StringKeys.CORS_URL) // Create a new URL object of Allowed URL
+
   // Link All Router as MainRouter with all main middlewares
   Server.use(
     '/api',
@@ -63,7 +64,7 @@ if (cluster.isPrimary) {
     Middleware.AccessController([AllowedURLobject.hostname]),
     urlencoded({ extended: true, limit: 5000000 * 1000, parameterLimit: 5000, inflate: true }),
     rateLimiter, // Rate Limiter Middleware Function
-    Middleware.RequestInjectIP, // Inject IP Middleware Function
+    Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE']), // Inject IP Middleware Function
     MainRouter // Main Router
   ) // Link Main Router
 
