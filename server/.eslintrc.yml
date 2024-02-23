@@ -6,10 +6,11 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules: {
-  'max-len': ['error', { 'code': 180 }],
+  'max-len': ['error', { 'code': 185 }],
   'object-curly-spacing': ['error', 'never'],
   'valid-jsdoc': 'off',
   'require-jsdoc': 'off',
   'new-cap': 'off',
-  "no-mixed-spaces-and-tabs": 0
+  "no-mixed-spaces-and-tabs": 0,
+  "semi": "off",
 }

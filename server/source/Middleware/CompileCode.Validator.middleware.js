@@ -1,49 +1,24 @@
-import { Serve, StatusCodes } from 'outers' // Import all the required modules
+import { StatusCodes, methods } from 'outers' // Import all the required modules
 
 // Input Validation
 export const InputValidation = (Request, Response, Next) => {
+  // Create Response Instance
+  const BAD_REQUEST = new methods.Response.JSON(Response, StatusCodes.BAD_REQUEST, 'json') // Bad Request Response Instance
+
   if (!Request.body.Code) {
-    return Serve.JSON({
-      response: Response,
-      message: 'Code is required in Request Body',
-      Title: 'Input Validation Error',
-      status: false,
-      statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined
-    })
+    return BAD_REQUEST.Send(undefined, 'Code is required in Request Body') // Return Error
   }
 
   if (!Request.body.Language) {
-    return Serve.JSON({
-      response: Response,
-      message: 'Language is required in Request Body',
-      Title: 'Input Validation Error',
-      status: false,
-      statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined
-    })
+    return BAD_REQUEST.Send(undefined, 'Language is required in Request Body') // Return Error
   }
 
   if (!Request.body.FileName) {
-    return Serve.JSON({
-      response: Response,
-      message: 'FileName is required in Request Body',
-      Title: ' File Name Validation Error',
-      status: false,
-      statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined
-    })
+    return BAD_REQUEST.Send(undefined, 'FileName is required in Request Body') // Return Error
   }
 
   if (!Request.body.SessionID) {
-    return Serve.JSON({
-      response: Response,
-      message: 'SessionID is required in Request Body',
-      Title: 'Session ID Validation Error',
-      status: false,
-      statusCode: StatusCodes.BAD_REQUEST,
-      data: undefined
-    })
+    return BAD_REQUEST.Send(undefined, 'SessionID is required in Request Body') // Return Error
   }
 
   Next() // Call Next Middleware Function  if all the above conditions are satisfied
