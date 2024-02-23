@@ -1,6 +1,6 @@
 // Import MongoDB
 import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
-import { Serve, Console, StatusCodes } from 'outers' // Response
+import { Console, StatusCodes, methods } from 'outers' // Response
 import { LangTypesDirectory } from '../core/environment variables.core.js' // Environmental Variables
 
 // Main Code for Download Code Controller
@@ -14,17 +14,18 @@ export default async function DownloadCode (Request, Response) {
     // Find Any Documents with the SessionID
     const SessionIDData = await MongooseModel.find({ sessionID: SessionID }) // Find SessionID in MongoDB
 
+    // Create Response Instance
+    const REQUEST_TIMEOUT = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Download Code') // Request Timeout Response Instance
+    const FILE_DOWNLOAD = new methods.Response.File(
+      Response,
+      `${LanguageType?.CompiledOutputDirectory || LanguageType.directoryName}`,
+      'text/plain',
+      StatusCodes.OK
+    ) // File Download Response Instance
+
     // Download Code if SessionID exists in MongoDB
     if (SessionIDData.length === 0) {
-      Serve.JSON({
-        response: Response,
-        status: false,
-        statusCode: StatusCodes.REQUEST_TIMEOUT,
-        Title: 'Unable to Download Code',
-        message: 'No Code Found, please try again later or contact support',
-        data: undefined
-      })
-      return // Return if SessionID does not exist in MongoDB
+      return REQUEST_TIMEOUT.Send(undefined, 'No Code Found, please try again later or contact support') // Return Error
     }
 
     // Download Code
@@ -37,32 +38,13 @@ export default async function DownloadCode (Request, Response) {
       await MongooseModel.findByIdAndDelete(SessionIDData[0]._id) // Delete Document from MongoDB
 
       // Serve the File
-      Serve.File({
-        response: Response,
-        Filename: SessionIDData[0].FileName,
-        rootName: LanguageType?.CompiledOutputDirectory || LanguageType.directoryName,
-        statusCode: StatusCodes.OK,
-        contentType: 'text/plain'
-      })
+      FILE_DOWNLOAD.SendFile(SessionIDData[0].FileName) // Send File to the Client
     } catch (error) {
       console.log(error) // Print Error
-      Serve.JSON({
-        response: Response,
-        status: false,
-        statusCode: StatusCodes.REQUEST_TIMEOUT,
-        Title: 'Unable to Download Code',
-        message: 'Unable to Download Code, please try again later or contact support',
-        data: error
-      })
+      REQUEST_TIMEOUT.Send(undefined, 'Unable to Download Code, please try again later or contact support') // Return Error
     }
   } catch (error) {
     Console.red(error) // Print When Error
-    Serve.JSON({
-      response: Response,
-      status: false,
-      statusCode: StatusCodes.REQUEST_TIMEOUT,
-      Title: 'Unable to Download Code',
-      message: 'Unable to Download Code, please try again later or contact support'
-    })
+    REQUEST_TIMEOUT.Send(undefined, 'Unable to Download Code, please try again later or contact support') // Return Error
   }
 }
