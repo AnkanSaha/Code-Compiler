@@ -9,7 +9,7 @@ import Executor from './Functions/executor.function.controllers.js' // Import Ex
 import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
 
 // Main Compile Code Controller
-export default async function Compile(Request, Response) {
+export default async function Compile (Request, Response) {
   // Response Sender Instances
   const TimeOut = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
 
@@ -47,7 +47,7 @@ export default async function Compile(Request, Response) {
       LanguageName: Language,
       BuilderIP: RequesterIPaddress,
       BuildTime: Date.now(),
-      BuildStatus: 'Pending',
+      BuildStatus: 'Pending'
     }) // Create MongoDB Document
     const DataStatus = await CompilerDataModel.save() // Save MongoDB Document
 
@@ -79,8 +79,8 @@ export default async function Compile(Request, Response) {
         BuildTime: Date.now(),
         BuilderIP: RequesterIPaddress,
         FileSize: Code.length,
-        FileExtraPackages: Packages,
-      },
+        FileExtraPackages: Packages
+      }
     ) // Update MongoDB Document for the SessionID
 
     // Check if MongoDB Document was updated

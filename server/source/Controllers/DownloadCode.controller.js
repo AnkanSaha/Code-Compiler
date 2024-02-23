@@ -4,7 +4,7 @@ import { Console, StatusCodes, methods } from 'outers' // Response
 import { LangTypesDirectory } from '../core/environment variables.core.js' // Environmental Variables
 
 // Main Code for Download Code Controller
-export default async function DownloadCode(Request, Response) {
+export default async function DownloadCode (Request, Response) {
   // Response Instances
   const REQUEST_TIMEOUT = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Download Code') // Request Timeout Response Instance
   try {
@@ -21,7 +21,7 @@ export default async function DownloadCode(Request, Response) {
       Response,
       `${LanguageType?.CompiledOutputDirectory || LanguageType.directoryName}`,
       'text/plain',
-      StatusCodes.OK,
+      StatusCodes.OK
     ) // File Download Response Instance
 
     // Download Code if SessionID exists in MongoDB
