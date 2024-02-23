@@ -10,6 +10,9 @@ import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
 
 // Main Compile Code Controller
 export default async function Compile (Request, Response) {
+  // Response Sender Instances
+  const TimeOut = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
+
   // Write Code to Uncompiled File Directory
   const { SessionID, Language, Code, FileName, Packages, RequesterIPaddress } = Request.body // Destructure Request Body
 
@@ -22,9 +25,6 @@ export default async function Compile (Request, Response) {
 
   // Find sessionID in MongoDB if it exists
   const ExistSessionID = await MongooseModel.find({ sessionID: SessionID }) // Find SessionID in MongoDB
-
-  // Response Sender Instances
-  const TimeOut = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
 
   // Check if SessionID exists in MongoDB
   if (ExistSessionID.length === 0) {
