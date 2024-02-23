@@ -4,14 +4,14 @@ import executeCommand from '../../utils/commandExecutor.utils.js' // Import Comm
 import { MongooseModel } from '../../Database/MongoDB.db.js' // Import MongoDB Model
 import { join } from 'path' // Import the path module
 
-export default async function Executor(FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
+export default async function Executor (FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
   try {
     // Create Response Instances
     const EXPECTATION_FAILED = new methods.Response.JSON(
       Response,
       StatusCodes.EXPECTATION_FAILED,
       'json',
-      'Code Interpreted Failed',
+      'Code Interpreted Failed'
     ) // Expectation Failed Response Instance
     const OK = new methods.Response.JSON(Response, StatusCodes.OK, 'json', 'Code Interpreted Successfully') // OK Response Instance
     const BAD_REQUEST = new methods.Response.JSON(Response, StatusCodes.BAD_REQUEST, 'json') // Bad Request Response Instance
@@ -28,8 +28,8 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
             BuildStatus: 'Success',
             BuildTime: Date.now(),
             BuilderIP: RequesterIPaddress,
-            CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`,
-          },
+            CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`
+          }
         ) // Update Session Status
 
         // Return Success
@@ -46,7 +46,7 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       // Update File Path in MongoDB after Compilation
       await MongooseModel.updateOne(
         { sessionID: SessionID },
-        { CompilerOutputFile: `${join(`${LanguageDetails.CompiledOutputDirectory}/${FileName}`)}` },
+        { CompilerOutputFile: `${join(`${LanguageDetails.CompiledOutputDirectory}/${FileName}`)}` }
       ) // Update Session Status
 
       // Check If Compile Status is Success
@@ -63,7 +63,7 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       if (ExecuteStatus.output !== '') {
         await MongooseModel.updateOne(
           { sessionID: SessionID },
-          { BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress },
+          { BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress }
         ) // Update Session Status
 
         OK.Send(ExecuteStatus.output, 'Code Interpreted Successfully and Output is displayed below') // Return Success
