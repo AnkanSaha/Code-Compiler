@@ -1,27 +1,26 @@
 import { Router } from 'express' // Router from express
-import { StatusCodes, Serve } from 'outers' // Import Status Codes
-import CORS from 'cors' // Cors Module
-import { StringKeys } from '../core/environment variables.core.js' // CORS Config
+import { StatusCodes, Serve, Middleware } from 'outers' // Import Status Codes
+import { StringKeys } from '../core/environment variables.core.js' // Import variables
+
+// Middleware Imports
+import rateLimiter from '../Middleware/RateLimiter.middleware.js' // Express Rate Limiter
+import CORS from '../Middleware/CORS.middleware.js' // Inject IP Middleware Function
 
 // import All Sub Routers
-import CompileRouter from './Routes/CompileCode.Routes.js' // Environment Variables
+import CompileRouter from './Routes/CompileCode.Routes.js' // CORS Middleware
 
 // setup Router
 const MainRouter = Router() // Main Router
 
-// Setup Cors Config
-MainRouter.use(
-  CORS({
-    origin: StringKeys.CORS_URL, // Allow Only This URL to Access
-    credentials: true, // Allow Client To Send Cookies or Credentials to Server
-    allowedHeaders: ['Authorization', 'Content-Type', 'filename'], // Allow Only These Headers from Client to Server
-    exposedHeaders: ['filename', 'Content-Disposition'], // Expose Custom Headers to Client from Server
-    maxAge: 86400, // 1 Day
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow Only These Methods
-    optionsSuccessStatus: StatusCodes.CONTINUE, // Set Status Code for OPTIONS Request
-    preflightContinue: true // Continue if OPTIONS Request
-  })
-) // Compile Code Router
+// Create a new URL object of Allowed URL
+const { hostname } = new URL(StringKeys.CORS_URL) // Create a new URL object of Allowed URL
+
+// Attach Security Middleware to Protect API Endpoints
+MainRouter.use(Middleware.MethodsController()) // Allow only GET, POST, PUT, DELETE
+MainRouter.use(rateLimiter) // Rate Limiter Middleware
+MainRouter.use(CORS) // CORS Config
+MainRouter.use(Middleware.AccessController([hostname])) // Allow access to only allowed URL
+MainRouter.use(Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE'])) // Environment Variables
 
 // Link All Sub Routers to Main Router
 MainRouter.use('/process', CompileRouter) // Compile Code Router
