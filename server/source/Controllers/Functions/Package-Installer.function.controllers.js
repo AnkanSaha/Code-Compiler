@@ -1,8 +1,8 @@
-import {Console} from 'outers' // Import Console from Outers
+import { Console } from 'outers' // Import Console from Outers
 import Executor from '../../utils/commandExecutor.utils.js' // Import Command Executor
 
 // Installer of Packages for Codes
-export default async function PackageInstaller(LanguageDetails, PackageArray) {
+export default async function PackageInstaller (LanguageDetails, PackageArray) {
   try {
     // Install Packages for Code
     PackageArray.forEach(async (element) => {

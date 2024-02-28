@@ -1,26 +1,26 @@
-import {Router} from 'express' // Router from express
-import {StatusCodes, Serve, Middleware} from 'outers' // Import Status Codes
-import {StringKeys} from '../core/environment variables.core.js' // Import variables
+import { Router } from 'express' // Router from express
+import { StatusCodes, Serve, Middleware } from 'outers' // Import Status Codes
+import { StringKeys } from '../core/environment variables.core.js' // Import variables
 
 // Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js' // Express Rate Limiter
-import CORS from '../Middleware/CORS.middleware.js' // CORS Middleware
+import CORS from '../Middleware/CORS.middleware.js' // Inject IP Middleware Function
+
+// import All Sub Routers
+import CompileRouter from './Routes/CompileCode.Routes.js' // CORS Middleware
 
 // setup Router
 const MainRouter = Router() // Main Router
 
 // Create a new URL object of Allowed URL
-const {hostname} = new URL(StringKeys.CORS_URL) // Create a new URL object of Allowed URL
+const { hostname } = new URL(StringKeys.CORS_URL) // Create a new URL object of Allowed URL
 
 // Attach Security Middleware to Protect API Endpoints
 MainRouter.use(Middleware.MethodsController()) // Allow only GET, POST, PUT, DELETE
 MainRouter.use(rateLimiter) // Rate Limiter Middleware
 MainRouter.use(CORS) // CORS Config
 MainRouter.use(Middleware.AccessController([hostname])) // Allow access to only allowed URL
-MainRouter.use(Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE'])) // Inject IP Middleware Function
-
-// import All Sub Routers
-import CompileRouter from './Routes/CompileCode.Routes.js' // Environment Variables
+MainRouter.use(Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE'])) // Environment Variables
 
 // Link All Sub Routers to Main Router
 MainRouter.use('/process', CompileRouter) // Compile Code Router
@@ -37,8 +37,8 @@ MainRouter.all('*', (Request, Response) => {
       requestedUrl: Request.url,
       requestedMethod: Request.method,
       requestedBody: Request.body,
-      requestedHeaders: Request.headers,
-    },
+      requestedHeaders: Request.headers
+    }
   }) // Response Not Allowed Request
 }) // Not Allowed Request
 

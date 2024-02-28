@@ -1,17 +1,17 @@
 // Main File Executor
-import {Console, StatusCodes, methods} from 'outers' // Import Console from Outers
+import { Console, StatusCodes, methods } from 'outers' // Import Console from Outers
 import executeCommand from '../../utils/commandExecutor.utils.js' // Import Command Executor
-import {MongooseModel} from '../../Database/MongoDB.db.js' // Import MongoDB Model
-import {join} from 'path' // Import the path module
+import { MongooseModel } from '../../Database/MongoDB.db.js' // Import MongoDB Model
+import { join } from 'path' // Import the path module
 
-export default async function Executor(FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
+export default async function Executor (FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
   try {
     // Create Response Instances
     const EXPECTATION_FAILED = new methods.Response.JSON(
-        Response,
-        StatusCodes.EXPECTATION_FAILED,
-        'json',
-        'Code Interpreted Failed',
+      Response,
+      StatusCodes.EXPECTATION_FAILED,
+      'json',
+      'Code Interpreted Failed'
     ) // Expectation Failed Response Instance
     const OK = new methods.Response.JSON(Response, StatusCodes.OK, 'json', 'Code Interpreted Successfully') // OK Response Instance
     const BAD_REQUEST = new methods.Response.JSON(Response, StatusCodes.BAD_REQUEST, 'json') // Bad Request Response Instance
@@ -23,13 +23,13 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       // Check If Interpret Status is Success
       if (InterPreteStatus.output !== '') {
         await MongooseModel.updateOne(
-            {sessionID: SessionID},
-            {
-              BuildStatus: 'Success',
-              BuildTime: Date.now(),
-              BuilderIP: RequesterIPaddress,
-              CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`,
-            },
+          { sessionID: SessionID },
+          {
+            BuildStatus: 'Success',
+            BuildTime: Date.now(),
+            BuilderIP: RequesterIPaddress,
+            CompilerOutputFile: `${join(`${LanguageDetails.directoryName}/${FileName}`)}`
+          }
         ) // Update Session Status
 
         // Return Success
@@ -45,8 +45,8 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
 
       // Update File Path in MongoDB after Compilation
       await MongooseModel.updateOne(
-          {sessionID: SessionID},
-          {CompilerOutputFile: `${join(`${LanguageDetails.CompiledOutputDirectory}/${FileName}`)}`},
+        { sessionID: SessionID },
+        { CompilerOutputFile: `${join(`${LanguageDetails.CompiledOutputDirectory}/${FileName}`)}` }
       ) // Update Session Status
 
       // Check If Compile Status is Success
@@ -62,8 +62,8 @@ export default async function Executor(FileName, LanguageDetails, SessionID, Fil
       // Check If Execute Status is Success
       if (ExecuteStatus.output !== '') {
         await MongooseModel.updateOne(
-            {sessionID: SessionID},
-            {BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress},
+          { sessionID: SessionID },
+          { BuildStatus: 'Success', BuildTime: Date.now(), BuilderIP: RequesterIPaddress }
         ) // Update Session Status
 
         OK.Send(ExecuteStatus.output, 'Code Interpreted Successfully and Output is displayed below') // Return Success
