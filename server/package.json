@@ -36,7 +36,7 @@
     "express-rate-limit": "^7.1.5",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2",
-    "outers": "^6.4.9"
+    "outers": "^7.2.6"
   },
   "type": "module",
   "sponsor": {
