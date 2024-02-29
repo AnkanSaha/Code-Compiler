@@ -13,10 +13,10 @@ export const NumberKeys = {
 // Export keys
 export const StringKeys = Object.freeze({
   AppName: String('Code-Compiler'),
-  CORS_URL: String(process.env.ALLOWED_ORIGINS) || '*',
+  CORS_URL: String(process.env.CORS_ORIGIN) || '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
   JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) || '10d',
-  IPINFO_API_KEY: String(process.env.IPINFO_API_KEY) ?? String(process.env.VITE_IP_INFO_API_KEY) ?? undefined,
+  IPINFO_API_KEY: String(process.env.IP_INFO_API_KEY) ?? String(process.env.VITE_IP_INFO_API_KEY) ?? undefined,
   // Server Details
   Platform: String(platform()),
   Architecture: String(arch()),
