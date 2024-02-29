@@ -6,16 +6,16 @@ dotenv.config() // Import OS
 
 // Number Keys
 export const NumberKeys = {
-  PORT: Number(process.env.PORT) || 4896, // Port
-  CPUCount: cpus().length * Number(process.env.CPU_COUNT_MULTIPLIERENV) || 2 // CPU Count
+  PORT: Number(process.env.PORT) ?? 4896, // Port
+  CPUCount: cpus().length * Number(process.env.CPU_COUNT_MULTIPLIERENV) ?? 2 // CPU Count
 }
 
 // Export keys
 export const StringKeys = Object.freeze({
   AppName: String('Code-Compiler'),
-  CORS_URL: String(process.env.CORS_ORIGIN) || '*',
+  CORS_URL: String(process.env.CORS_ORIGIN) ?? '*',
   JWT_SECRET: String(process.env.JWT_SECRET),
-  JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) || '10d',
+  JWT_EXPIRES_IN: String(process.env.JWT_EXPIRES_IN) ?? '10d',
   IPINFO_API_KEY: String(process.env.IP_INFO_API_KEY) ?? String(process.env.VITE_IP_INFO_API_KEY) ?? undefined,
   // Server Details
   Platform: String(platform()),
@@ -30,7 +30,7 @@ export const StringKeys = Object.freeze({
 // Database Keys
 export const DatabaseKeys = Object.freeze({
   MongoDB: String(process.env.MONGODB_URL),
-  DB_Name: String(process.env.DB_NAME) || 'Code-Compiler',
+  DB_Name: String(process.env.DB_NAME) ?? 'Code-Compiler',
   CollectionName: String('compiledFileRecord')
 })
 
