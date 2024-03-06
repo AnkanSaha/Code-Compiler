@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import dotenv from 'dotenv' // https://www.npmjs.com/package/dotenv
-import {join} from 'path' // Initialize dotenv
-import {cpus, platform, freemem, arch} from 'os' // Import Path
+import { join } from 'path' // Initialize dotenv
+import { cpus, platform, freemem, arch } from 'os' // Import Path
 dotenv.config() // Import OS
 
 // Number Keys
 export const NumberKeys = {
   PORT: Number(process.env.PORT) ?? 4896, // Port
-  CPUCount: Number(process.env.CPU_COUNT_MULTIPLIERENV) ?? cpus().length, // CPU Count
+  CPUCount: Number(process.env.CPU_COUNT_MULTIPLIERENV) ?? cpus().length // CPU Count
 }
 
 // Export keys
@@ -24,14 +24,14 @@ export const StringKeys = Object.freeze({
   Model: String(cpus()[0].model),
   StaticDirectoryName: String('CompiledCode'),
   CompileLangDirectoryName: String('CompiledLang'),
-  InterpretedLangDirectoryName: String('InterpretedLang'),
+  InterpretedLangDirectoryName: String('InterpretedLang')
 })
 
 // Database Keys
 export const DatabaseKeys = Object.freeze({
   MongoDB: String(process.env.MONGODB_URL),
   DB_Name: String(process.env.DB_NAME) ?? 'Code-Compiler',
-  CollectionName: String('compiledFileRecord'),
+  CollectionName: String('compiledFileRecord')
 })
 
 // Language & Their Types & Directory Name
@@ -41,14 +41,14 @@ export const LangTypesDirectory = [
     type: 'interpreted',
     directoryName: StringKeys.InterpretedLangDirectoryName,
     RunCommand: 'node ',
-    PackageManagerInstallCommand: 'npm install ',
+    PackageManagerInstallCommand: 'npm install '
   },
   {
     language: 'Python',
     type: 'interpreted',
     directoryName: StringKeys.InterpretedLangDirectoryName,
     RunCommand: 'python3 ',
-    PackageManagerInstallCommand: 'pip install',
+    PackageManagerInstallCommand: 'pip install'
   },
   {
     language: 'Java',
@@ -56,7 +56,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `javac -d ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: 'java ',
+    RunCommand: 'java '
   },
   {
     language: 'C++',
@@ -64,7 +64,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `g++ -o ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: './',
+    RunCommand: './'
   },
   {
     language: 'Dart',
@@ -72,7 +72,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `dart compile exe -o ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: './',
+    RunCommand: './'
   },
   {
     language: 'C',
@@ -80,7 +80,7 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `gcc -o ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: './',
+    RunCommand: './'
   },
   {
     language: 'Go',
@@ -88,13 +88,13 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `go build -o ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: './',
+    RunCommand: './'
   },
   {
     language: 'Ruby',
     type: 'interpreted',
     directoryName: StringKeys.InterpretedLangDirectoryName,
-    RunCommand: 'ruby ',
+    RunCommand: 'ruby '
   },
   {
     language: 'Rust',
@@ -102,6 +102,6 @@ export const LangTypesDirectory = [
     directoryName: StringKeys.CompileLangDirectoryName,
     CompileCommand: `rustc -o ${join(StringKeys.StaticDirectoryName)}/`,
     CompiledOutputDirectory: StringKeys.StaticDirectoryName,
-    RunCommand: './',
-  },
+    RunCommand: './'
+  }
 ]

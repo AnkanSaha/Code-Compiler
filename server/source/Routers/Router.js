@@ -1,6 +1,6 @@
-import {Router} from 'express' // Router from express
-import {StatusCodes, Serve, Middleware} from 'outers' // Import Status Codes
-import {StringKeys} from '../core/environment variables.core.js' // Import variables
+import { Router } from 'express' // Router from express
+import { StatusCodes, Serve, Middleware } from 'outers' // Import Status Codes
+import { StringKeys } from '../core/environment variables.core.js' // Import variables
 
 // Middleware Imports
 import rateLimiter from '../Middleware/RateLimiter.middleware.js' // Express Rate Limiter
@@ -34,8 +34,8 @@ MainRouter.all('*', (Request, Response) => {
       requestedUrl: Request.url,
       requestedMethod: Request.method,
       requestedBody: Request.body,
-      requestedHeaders: Request.headers,
-    },
+      requestedHeaders: Request.headers
+    }
   }) // Response Not Allowed Request
 }) // Not Allowed Request
 
