@@ -1,6 +1,6 @@
-import mongoose, { connect } from 'mongoose' // Mongoose for Schema and Models only
-import { DatabaseKeys, NumberKeys } from '../core/environment variables.core.js' // Env Variables
-import { Console } from 'outers' // Import Console from outers
+import mongoose, {connect} from 'mongoose' // Mongoose for Schema and Models only
+import {DatabaseKeys, NumberKeys} from '../core/environment variables.core.js' // Env Variables
+import {Console} from 'outers' // Import Console from outers
 
 // Import Models
 import compiledFileRecordModelDb from './Models/compiledFileRecord.model.db.js' // Compiled File Record Model

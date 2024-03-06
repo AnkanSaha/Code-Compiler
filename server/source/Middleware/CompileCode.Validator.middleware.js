@@ -1,4 +1,4 @@
-import { StatusCodes, ClassBased } from 'outers' // Import all the required modules
+import {StatusCodes, ClassBased} from 'outers' // Import all the required modules
 
 // Input Validation
 export const InputValidation = (Request, Response, Next) => {
