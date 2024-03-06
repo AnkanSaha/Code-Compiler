@@ -1,20 +1,20 @@
 import fs from 'fs' // File System Module
-import { join } from 'path' // Import the path module
+import {join} from 'path' // Import the path module
 import PackageInstaller from './Functions/Package-Installer.function.controllers.js' // Import Package Installer
-import { StatusCodes, methods } from 'outers' // Import Response from Outers
-import { LangTypesDirectory } from '../core/environment variables.core.js' // Environmental Variables
+import {StatusCodes, ClassBased} from 'outers' // Import Response from Outers
+import {LangTypesDirectory} from '../core/environment variables.core.js' // Environmental Variables
 import Executor from './Functions/executor.function.controllers.js' // Import Executor
 
 // Import MongoDB
-import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
+import {MongooseModel} from '../Database/MongoDB.db.js' // Import MongoDB
 
 // Main Compile Code Controller
-export default async function Compile (Request, Response) {
+export default async function Compile(Request, Response) {
   // Response Sender Instances
-  const TimeOut = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
+  const TimeOut = new ClassBased.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
 
   // Write Code to Uncompiled File Directory
-  const { SessionID, Language, Code, FileName, Packages, RequesterIPaddress } = Request.body // Destructure Request Body
+  const {SessionID, Language, Code, FileName, Packages, RequesterIPaddress} = Request.body // Destructure Request Body
 
   // Select Preferred Directory
   const PreferredLanguageDir = LangTypesDirectory.find((element) => element.language.toLowerCase() === Language.toLowerCase()) // Find Preferred Directory
@@ -24,7 +24,7 @@ export default async function Compile (Request, Response) {
   const PreferredFileName = `${SessionID}-${FileName}` // File Name in Server
 
   // Find sessionID in MongoDB if it exists
-  const ExistSessionID = await MongooseModel.find({ sessionID: SessionID }) // Find SessionID in MongoDB
+  const ExistSessionID = await MongooseModel.find({sessionID: SessionID}) // Find SessionID in MongoDB
 
   // Check if SessionID exists in MongoDB
   if (ExistSessionID.length === 0) {
@@ -47,7 +47,7 @@ export default async function Compile (Request, Response) {
       LanguageName: Language,
       BuilderIP: RequesterIPaddress,
       BuildTime: Date.now(),
-      BuildStatus: 'Pending'
+      BuildStatus: 'Pending',
     }) // Create MongoDB Document
     const DataStatus = await CompilerDataModel.save() // Save MongoDB Document
 
@@ -73,14 +73,14 @@ export default async function Compile (Request, Response) {
     }
     // Update MongoDB Document for the SessionID if it exists
     const updateStatus = await MongooseModel.updateOne(
-      { sessionID: SessionID },
-      {
-        BuildStatus: 'Pending',
-        BuildTime: Date.now(),
-        BuilderIP: RequesterIPaddress,
-        FileSize: Code.length,
-        FileExtraPackages: Packages
-      }
+        {sessionID: SessionID},
+        {
+          BuildStatus: 'Pending',
+          BuildTime: Date.now(),
+          BuilderIP: RequesterIPaddress,
+          FileSize: Code.length,
+          FileExtraPackages: Packages,
+        },
     ) // Update MongoDB Document for the SessionID
 
     // Check if MongoDB Document was updated

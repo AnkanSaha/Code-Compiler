@@ -1,9 +1,9 @@
-import { StatusCodes, methods } from 'outers' // Import all the required modules
+import {StatusCodes, ClassBased} from 'outers' // Import all the required modules
 
 // Input Validation
 export const InputValidation = (Request, Response, Next) => {
   // Create Response Instance
-  const BAD_REQUEST = new methods.Response.JSON(Response, StatusCodes.BAD_REQUEST, 'json') // Bad Request Response Instance
+  const BAD_REQUEST = new ClassBased.Response.JSON(Response, StatusCodes.BAD_REQUEST, 'json') // Bad Request Response Instance
 
   if (!Request.body.Code) {
     return BAD_REQUEST.Send(undefined, 'Code is required in Request Body') // Return Error
