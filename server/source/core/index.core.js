@@ -1,6 +1,6 @@
 // Server Related Imports
 import express, { json, urlencoded } from 'express' // Import Express
-import { methods } from 'outers' // Import Console from outers
+import { FunctionBased } from 'outers' // Import Console from outers
 import { StringKeys, NumberKeys } from './environment variables.core.js' // Env Variables
 
 // Import Utils
@@ -30,4 +30,4 @@ Server.use(express.static(StringKeys.StaticDirectoryName)) // Configure Static F
 Server.use(express.static(StringKeys.InterpretedLangDirectoryName)) // Configure Static Folder
 
 // Start Server With Cluster Configuration
-methods.ClusterCreator(Server, NumberKeys.PORT, NumberKeys.CPUCount, [Creator], [ConnectDB]) // Create NodeJS Cluster Process
+FunctionBased.ClusterCreator(Server, NumberKeys.PORT, NumberKeys.CPUCount, [Creator], [ConnectDB]) // Create NodeJS Cluster Process

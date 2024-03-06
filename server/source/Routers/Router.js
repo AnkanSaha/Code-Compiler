@@ -12,14 +12,11 @@ import CompileRouter from './Routes/CompileCode.Routes.js' // CORS Middleware
 // setup Router
 const MainRouter = Router() // Main Router
 
-// Create a new URL object of Allowed URL
-const { hostname } = new URL(StringKeys.CORS_URL) // Create a new URL object of Allowed URL
-
 // Attach Security Middleware to Protect API Endpoints
 MainRouter.use(Middleware.MethodsController()) // Allow only GET, POST, PUT, DELETE
 MainRouter.use(rateLimiter) // Rate Limiter Middleware
 MainRouter.use(CORS) // CORS Config
-MainRouter.use(Middleware.AccessController([hostname])) // Allow access to only allowed URL
+MainRouter.use(Middleware.AccessController([new URL(StringKeys.CORS_URL).hostname])) // Allow access to only allowed URL
 MainRouter.use(Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE'])) // Environment Variables
 
 // Link All Sub Routers to Main Router

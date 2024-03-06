@@ -1,5 +1,5 @@
 // Main File Executor
-import { Console, StatusCodes, methods } from 'outers' // Import Console from Outers
+import { Console, StatusCodes, ClassBased } from 'outers' // Import Console from Outers
 import executeCommand from '../../utils/commandExecutor.utils.js' // Import Command Executor
 import { MongooseModel } from '../../Database/MongoDB.db.js' // Import MongoDB Model
 import { join } from 'path' // Import the path module
@@ -7,7 +7,7 @@ import { join } from 'path' // Import the path module
 export default async function Executor (FileName, LanguageDetails, SessionID, FilePath, RequesterIPaddress, Response) {
   try {
     // Create Response Instances
-    const EXPECTATION_FAILED = new methods.Response.JSON(
+    const EXPECTATION_FAILED = new ClassBased.Response.JSON(
       Response,
       StatusCodes.EXPECTATION_FAILED,
       'json',

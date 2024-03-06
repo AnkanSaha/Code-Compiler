@@ -1,12 +1,12 @@
 // Import MongoDB
 import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
-import { Console, StatusCodes, methods } from 'outers' // Response
+import { Console, StatusCodes, ClassBased } from 'outers' // Response
 import { LangTypesDirectory } from '../core/environment variables.core.js' // Environmental Variables
 
 // Main Code for Download Code Controller
 export default async function DownloadCode (Request, Response) {
   // Response Instances
-  const REQUEST_TIMEOUT = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Download Code') // Request Timeout Response Instance
+  const REQUEST_TIMEOUT = new ClassBased.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Download Code') // Request Timeout Response Instance
   try {
     const { SessionID, Language } = Request.query // Destructure Request Body
 
@@ -17,7 +17,7 @@ export default async function DownloadCode (Request, Response) {
     const SessionIDData = await MongooseModel.find({ sessionID: SessionID }) // Find SessionID in MongoDB
 
     // Create File Downloader Response Instance
-    const FILE_DOWNLOAD = new methods.Response.File(
+    const FILE_DOWNLOAD = new ClassBased.Response.File(
       Response,
       `${LanguageType?.CompiledOutputDirectory || LanguageType.directoryName}`,
       'text/plain',

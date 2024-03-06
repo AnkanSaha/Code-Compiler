@@ -1,7 +1,7 @@
 import fs from 'fs' // File System Module
 import { join } from 'path' // Import the path module
 import PackageInstaller from './Functions/Package-Installer.function.controllers.js' // Import Package Installer
-import { StatusCodes, methods } from 'outers' // Import Response from Outers
+import { StatusCodes, ClassBased } from 'outers' // Import Response from Outers
 import { LangTypesDirectory } from '../core/environment variables.core.js' // Environmental Variables
 import Executor from './Functions/executor.function.controllers.js' // Import Executor
 
@@ -11,7 +11,7 @@ import { MongooseModel } from '../Database/MongoDB.db.js' // Import MongoDB
 // Main Compile Code Controller
 export default async function Compile (Request, Response) {
   // Response Sender Instances
-  const TimeOut = new methods.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
+  const TimeOut = new ClassBased.Response.JSON(Response, StatusCodes.REQUEST_TIMEOUT, 'json', 'Unable to Compile Code') // TimeOut Response Instance
 
   // Write Code to Uncompiled File Directory
   const { SessionID, Language, Code, FileName, Packages, RequesterIPaddress } = Request.body // Destructure Request Body

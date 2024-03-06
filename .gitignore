@@ -6,3 +6,4 @@ client/.cache
 # Server files
 server/node_modules
 server/.env
+server/Cache

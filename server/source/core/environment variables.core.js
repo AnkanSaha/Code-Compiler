@@ -7,7 +7,7 @@ dotenv.config() // Import OS
 // Number Keys
 export const NumberKeys = {
   PORT: Number(process.env.PORT) ?? 4896, // Port
-  CPUCount: cpus().length * Number(process.env.CPU_COUNT_MULTIPLIERENV) ?? 2 // CPU Count
+  CPUCount: Number(process.env.CPU_COUNT_MULTIPLIERENV) ?? cpus().length // CPU Count
 }
 
 // Export keys
