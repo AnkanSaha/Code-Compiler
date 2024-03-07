@@ -61,7 +61,7 @@ workflows:
           filters:
            branches:
              only: main
-    - Test_Server:
+      - Test_Server:
           name: Test Server Side
       - Test_Client:
           name: Test Client Side
