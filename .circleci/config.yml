@@ -61,6 +61,8 @@ workflows:
           filters:
            branches:
              only: main
+    - Test_Server:
+          name: Test Server Side
       - Test_Client:
           name: Test Client Side
           requires:
@@ -68,10 +70,6 @@ workflows:
           filters:
            branches:
              only: main
-      - Test_Server:
-          name: Test Server Side
-          requires:
-            - Test Client Side
           filters:
            branches:
              only: main
@@ -79,6 +77,7 @@ workflows:
           name: Publish to Gitlab
           requires:
             - Test Server Side
+            - Test Client Side
           filters:
             branches:
               only: main
