@@ -4,10 +4,10 @@
   "version": "1.2.5",
   "type": "module",
   "scripts": {
-    "dev": "npm run lint && vite --host",
-    "build": "npm run lint && vite build",
-    "lint": "eslint ./src/**/*.{js,jsx} --fix",
-    "preview": "npm run lint && vite preview"
+    "dev": "npm test && vite --host",
+    "build": "npm test && vite build",
+    "test": "eslint ./src/**/*.{js,jsx} --fix",
+    "preview": "npm test && vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
