@@ -59,8 +59,8 @@ workflows:
       - Build_Client:
           name: Build Client Side
           filters:
-           branches:
-             only: main
+            branches:
+              only: main
       - Test_Server:
           name: Test Server Side
       - Test_Client:
@@ -68,11 +68,8 @@ workflows:
           requires:
             - Build Client Side
           filters:
-           branches:
-             only: main
-          filters:
-           branches:
-             only: main
+            branches:
+              only: main
       - Push_To_Gitlab:
           name: Publish to Gitlab
           requires:
