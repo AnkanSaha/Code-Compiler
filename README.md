@@ -1,5 +1,7 @@
 # Code-Compiler
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/AnkanSaha/Code-Compiler/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AnkanSaha/Code-Compiler/tree/main)
+
 A Simple Online Code Editor Made with React, Node.js, Express.js, and MongoDB. The Code is Compiled and Executed on the Server Side. The Output is then Sent Back to the Client. The Client is also able to Download the Code which is Compiled and Executed on the Server Side.
 
 ## Features
