@@ -1,11 +1,11 @@
 // Server Related Imports
-import express, { json, urlencoded } from 'express' // Import Express
-import { FunctionBased } from 'outers' // Import Console from outers
-import { StringKeys, NumberKeys } from './environment variables.core.js' // Env Variables
+import express, {json, urlencoded} from 'express' // Import Express
+import {FunctionBased} from 'outers' // Import Console from outers
+import {StringKeys, NumberKeys} from './environment variables.core.js' // Env Variables
 
 // Import Utils
 import Creator from '../utils/directoryCreator.utils.js' // Import Directory Creator
-import { ConnectDB } from '../Database/MongoDB.db.js' // Import MongoDB Connection
+import {ConnectDB} from '../Database/MongoDB.db.js' // Import MongoDB Connection
 
 // Import Main Router
 import MainRouter from '../Routers/Router.js' // Import Main Router
@@ -19,8 +19,8 @@ const Server = express() // Create Express Server Instance
 Server.set('trust proxy', () => true) // Enable All Proxy Settings
 
 // Enable JSON & URL Encoding Parser
-Server.use(json({ limit: '999mb' })) // JSON Parser
-Server.use(urlencoded({ extended: true, limit: '999mb', parameterLimit: 5000, inflate: true })) // URL Encoded Parser
+Server.use(json({limit: '999mb'})) // JSON Parser
+Server.use(urlencoded({extended: true, limit: '999mb', parameterLimit: 5000, inflate: true})) // URL Encoded Parser
 
 // Link All Router as MainRouter with all main middlewares
 Server.use('/api', MainRouter) // Link Main Router
