@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Build Client Project
           command: | 
-            cd client/ && npm install --force && yarn run build
+            cd client/ && npm install --force && npm run build
   
   Test_Client:
     docker:
@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Test Client Project
           command: |
-            cd client/ && npm install --force && yarn run test
+            cd client/ && npm install --force && npm run test
   
   Test_Server:
     docker:
