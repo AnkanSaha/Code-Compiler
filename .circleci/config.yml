@@ -63,6 +63,9 @@ workflows:
               only: main
       - Test_Server:
           name: Test Server Side
+          filters:
+            branches:
+              only: main
       - Test_Client:
           name: Test Client Side
           requires:
