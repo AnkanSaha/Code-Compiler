@@ -15,9 +15,6 @@ import MainRouter from '../Routers/Router.js' // Import Main Router
 // Create Express Server Instance
 const Server = express() // Create Express Server Instance
 
-// Enable All Proxy Settings for Server Security
-Server.set('trust proxy', () => true) // Enable All Proxy Settings
-
 // Enable JSON & URL Encoding Parser
 Server.use(json({ limit: '999mb' })) // JSON Parser
 Server.use(urlencoded({ extended: true, limit: '999mb', parameterLimit: 5000, inflate: true })) // URL Encoded Parser
@@ -30,4 +27,4 @@ Server.use(express.static(StringKeys.StaticDirectoryName)) // Configure Static F
 Server.use(express.static(StringKeys.InterpretedLangDirectoryName)) // Configure Static Folder
 
 // Start Server With Cluster Configuration
-FunctionBased.ClusterCreator(Server, NumberKeys.PORT, NumberKeys.CPUCount, [Creator], [ConnectDB]) // Create NodeJS Cluster Process
+FunctionBased.ClusterCreator(Server, NumberKeys.PORT, NumberKeys.CPUCount, true, [Creator], [ConnectDB]) // Create NodeJS Cluster Process
