@@ -1,5 +1,5 @@
 import rateLimiter from 'express-rate-limit' // Express Rate Limiter
-import {StatusCodes} from 'outers' // Import Status Codes
+import { StatusCodes } from 'outers' // Import Status Codes
 
 // Rate Limiter Middleware Function
 export default rateLimiter({
@@ -11,18 +11,18 @@ export default rateLimiter({
     statusCode: StatusCodes.TOO_MANY_REQUESTS,
     Title: 'Too many requests',
     message: 'Too many requests, please try again later',
-    response: undefined,
+    response: undefined
   }, // Message
   standardHeaders: true, // Include standard headers for request limit
   legacyHeaders: false, // Include legacy headers for request limit
   keyGenerator: (Request) => {
     return String(
-        Request.headers['x-forwarded-for'] ??
+      Request.headers['x-forwarded-for'] ??
         Request.connection.remoteAddress ??
         Request.socket.remoteAddress ??
         Request.socket.remoteAddress ??
         Request.headers['x-real-ip'] ??
-        Request.ip,
-    );
-  },
+        Request.ip
+    )
+  }
 }) // Rate Limiter Middleware

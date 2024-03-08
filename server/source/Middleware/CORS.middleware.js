@@ -1,6 +1,6 @@
 import CORS from 'cors' // Cors Module
-import {StringKeys} from '../core/environment variables.core.js' // CORS Config
-import {StatusCodes} from 'outers' // Import Status Codes
+import { StringKeys } from '../core/environment variables.core.js' // CORS Config
+import { StatusCodes } from 'outers' // Import Status Codes
 
 export default CORS({
   origin: StringKeys.CORS_URL, // Allow Only This URL to Access
@@ -10,5 +10,5 @@ export default CORS({
   maxAge: 86400, // 1 Day
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow Only These Methods
   optionsSuccessStatus: StatusCodes.CONTINUE, // Set Status Code for OPTIONS Request
-  preflightContinue: true, // Continue if OPTIONS Request
+  preflightContinue: true // Continue if OPTIONS Request
 }) // CORS Config
