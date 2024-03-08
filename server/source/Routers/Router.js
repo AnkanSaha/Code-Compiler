@@ -16,7 +16,7 @@ const MainRouter = Router() // Main Router
 MainRouter.use(Middleware.MethodsController(['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])) // Allow only GET, POST, PUT, DELETE
 MainRouter.use(rateLimiter) // Rate Limiter Middleware
 MainRouter.use(CORS) // CORS Config
-MainRouter.use(Middleware.AccessController([new URL(StringKeys.CORS_URL).hostname])) // Allow access to only allowed URL
+MainRouter.use(Middleware.URL_Controller([new URL(StringKeys.CORS_URL).hostname])) // Allow access to only allowed URL
 MainRouter.use(Middleware.RequestInjectIP(['POST', 'PUT', 'DELETE'])) // Environment Variables
 
 // Link All Sub Routers to Main Router
