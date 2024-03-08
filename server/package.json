@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint && npm run start && npm run stop",
     "lint": "eslint . --ext .js --fix",
-    "dev": "npm test && node ./source/core/index.core.js",
+    "dev": "npm run lint && node ./source/core/index.core.js",
     "start": "pm2 start ./source/core/index.core.js --name Code-Compiler --max-memory-restart 200M -f",
     "stop": "pm2 stop Code-Compiler"
   },
