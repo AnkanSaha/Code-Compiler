@@ -14,15 +14,15 @@ export default rateLimiter({
     response: undefined
   }, // Message
   standardHeaders: true, // Include standard headers for request limit
-  legacyHeaders: false // Include legacy headers for request limit
-  keyGenerator: Request => {
-		return String(
-			Request.headers['x-forwarded-for'] ??
-				Request.connection.remoteAddress ??
-				Request.socket.remoteAddress ??
-				Request.socket.remoteAddress ??
-				Request.headers['x-real-ip'] ??
-				Request.ip
-		);
-	},
+  legacyHeaders: false, // Include legacy headers for request limit
+  keyGenerator: (Request) => {
+    return String(
+      Request.headers['x-forwarded-for'] ??
+        Request.connection.remoteAddress ??
+        Request.socket.remoteAddress ??
+        Request.socket.remoteAddress ??
+        Request.headers['x-real-ip'] ??
+        Request.ip
+    )
+  }
 }) // Rate Limiter Middleware

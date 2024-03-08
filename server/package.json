@@ -4,7 +4,7 @@
   "description": "Code-Compiler is a Online Code Compiler",
   "main": "source/core/index.core.js",
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && npm run start && npm run stop",
     "lint": "eslint . --ext .js --fix",
     "dev": "npm test && node ./source/core/index.core.js",
     "start": "pm2 start ./source/core/index.core.js --name Code-Compiler --max-memory-restart 200M -f",
@@ -36,7 +36,7 @@
     "express-rate-limit": "^7.1.5",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2",
-    "outers": "^8.2.13"
+    "outers": "^8.3.2"
   },
   "type": "module",
   "sponsor": {
