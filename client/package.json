@@ -18,7 +18,7 @@
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
-    "typed.js": "^2.0.16"
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@chakra-ui/react": "^2.8.1",
