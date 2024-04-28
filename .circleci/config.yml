@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Check if Backend Build Folder Already Exists in Server
           command: |
-            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${VM_IP} "sudo rm -rf ${PROJECT_NAME}"
+            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${VM_IP} "sudo rm -rf ${PROJECT_NAME}__server"
       - run:
           name: Send Server Files to Server
           command: |
