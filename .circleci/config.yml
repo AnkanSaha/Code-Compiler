@@ -12,11 +12,11 @@ jobs:
       - run:
           name: Install Client Dependencies
           command: | 
-            cd Client/ && npm install --force  
+            cd client/ && npm install --force  
       - run:
           name: Build Client Project
           command: |
-            cd Client/ && npm run build
+            cd client/ && npm run build
       - run:
           name: Check if Client Build Folder Already Exists in Server
           command: |
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Send Client Files to Server
           command: |
-            cd Client/ && scp -o StrictHostKeyChecking=no -r ${PROJECT_NAME}/ ${SSH_USER}@${VM_IP}:/home/${SSH_USER}/
+            cd client/ && scp -o StrictHostKeyChecking=no -r ${PROJECT_NAME}/ ${SSH_USER}@${VM_IP}:/home/${SSH_USER}/
       - run:
           name: Check if Already Exists in Nginx Static Folder
           command: |
