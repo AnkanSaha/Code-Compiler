@@ -1,0 +1,68 @@
+{
+  "name": "Code-Compiler",
+  "version": "1.0.3",
+  "description": "Code-Compiler is a Online Code Compiler",
+  "main": "source/core/index.core.js",
+  "scripts": {
+    "test": "npm run lint && npm run start && npm run stop",
+    "lint": "eslint . --ext .js --fix",
+    "dev": "npm run lint && node ./source/core/index.core.js",
+    "start": "pm2 start ./source/core/index.core.js --name Code-Compiler --max-memory-restart 200M -f",
+    "stop": "pm2 stop Code-Compiler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnkanSaha/Code-Compiler"
+  },
+  "keywords": [
+    "Code",
+    "Editor",
+    "Compiler",
+    "Online",
+    "Code-Compiler",
+    "Code-Compiler",
+    "Online-Code-Compiler"
+  ],
+  "author": "Ankan Saha",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "mongoose": "^8.0.3",
+    "nodemon": "^3.0.2",
+    "outers": "^8.3.2"
+  },
+  "type": "module",
+  "sponsor": {
+    "url": "https://github.com/sponsors/AnkanSaha"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0",
+    "vscode": "^1.22.0",
+    "yarn": ">=1.22.0",
+    "pnpm": ">=6.0.0"
+  },
+  "engineStrict": true,
+  "os": [
+    "linux",
+    "darwin",
+    "win32",
+    "x64",
+    "arm64",
+    "arm",
+    "x86"
+  ],
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/"
+    }
+  ]
+}

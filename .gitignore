@@ -4,6 +4,6 @@ client/Code-Compiler
 client/.cache
 
 # Server files
-server/node_modules
-server/.env
-server/Cache
+Code-Compiler_server/node_modules
+Code-Compiler_server/.env
+Code-Compiler_server/Cache
