@@ -53,7 +53,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${VM_IP} "cd ${PROJECT_NAME}__server/ && npm install --force"
+            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${VM_IP} "cd ${PROJECT_NAME}_server/ && npm install --force"
       - run:
           name: Add Environment Variables
           command: |
