@@ -58,7 +58,7 @@ jobs:
           name: Add Environment Variables
           command: |
             ssh -o StrictHostKeyChecking=no ${SSH_USER}@${VM_IP} "\
-            cd /home/${SSH_USER}/${PROJECT_NAME} && \
+            cd /home/${SSH_USER}/${PROJECT_NAME}_server && \
             echo 'PORT=${PORT}' > .env && \
             echo 'CPU_COUNT_MULTIPLIERENV=${CPU_PROCESS_COUNT}' >> .env && \
             echo 'CORS_ORIGIN=${CORS_ORIGIN}' >> .env && \
