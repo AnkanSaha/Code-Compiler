@@ -13,7 +13,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "cors": "^2.8.5",
     "react": "^18.2.0",
-    "react-caches": "^4.3.9",
+    "react-caches": "^4.4.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.3",
