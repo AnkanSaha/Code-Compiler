@@ -114,7 +114,7 @@ export default defineConfig({
     // build
     outDir: "Code-Compiler", // out directory
     emptyOutDir: true, // empty out directory
-    sourcemap: true, // sourcemap
+    sourcemap: false, // sourcemap
     minify: true, // minify
     ssrManifest: true, // ssr manifest
     modulePreload: true, // module preload
